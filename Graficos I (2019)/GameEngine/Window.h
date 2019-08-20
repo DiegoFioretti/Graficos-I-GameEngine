@@ -5,6 +5,7 @@
 #define WIDTH 640
 #define HEIGHT 480
 
+#include "Renderer.h"
 #include <GLFW/glfw3.h>
 
 class Window
@@ -16,5 +17,7 @@ public:
 	int CustomWindow(int width, int height);
 	~Window();
 	GLFWwindow* window();
+	void SetScreenWidth(int width);
+	void SetScreenHeight(int height);
 };
 #endif

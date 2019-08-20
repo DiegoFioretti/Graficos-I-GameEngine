@@ -31,14 +31,15 @@ int BaseGame::ScreenInit()
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(gameWindow.window()))
 	{
-		/* Render here */
+		/* Render here 
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		/* Swap front and back buffers */
+		/* Swap front and back buffers 
 		glfwSwapBuffers(gameWindow.window());
 
-		/* Poll for and process events */
-		glfwPollEvents();
+		/* Poll for and process events 
+		glfwPollEvents();*/
+		gameRender.WindowRefresh(gameWindow.window());
 	}
 
 	glfwTerminate();

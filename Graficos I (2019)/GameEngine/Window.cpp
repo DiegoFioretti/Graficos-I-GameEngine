@@ -27,3 +27,13 @@ GLFWwindow* Window::window()
 {
 	return _window;
 }
+
+void Window::SetScreenWidth(int width)
+{
+
+}
+
+void Window::SetScreenHeight(int height) 
+{
+
+}

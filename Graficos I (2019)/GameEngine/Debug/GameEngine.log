@@ -1,7 +1,6 @@
 ﻿  BaseGame.cpp
-c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(13): warning C4251: 'BaseGame::gameWindow': class 'Window' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
-  c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\window.h(10): note: vea la declaración de 'Window'
-  Window.cpp
-  Generando código...
-c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\window.cpp(20): warning C4715: 'Window::CustomWindow': no todas las rutas de acceso de control devuelven un valor
+c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(14): warning C4251: 'BaseGame::gameWindow': class 'Window' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
+  c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\window.h(11): note: vea la declaración de 'Window'
+c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(15): warning C4251: 'BaseGame::gameRender': class 'Renderer' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
+  c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\renderer.h(8): note: vea la declaración de 'Renderer'
   GameEngine.vcxproj -> C:\Users\Administrador\Desktop\Graficos-I-GameEngine\Graficos I (2019)\Debug\GameEngine.dll
