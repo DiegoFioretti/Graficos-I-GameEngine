@@ -1,6 +1,7 @@
 ﻿  BaseGame.cpp
-c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(14): warning C4251: 'BaseGame::gameWindow': class 'Window' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
-  c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\window.h(11): note: vea la declaración de 'Window'
-c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(15): warning C4251: 'BaseGame::gameRender': class 'Renderer' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
-  c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\renderer.h(8): note: vea la declaración de 'Renderer'
-  GameEngine.vcxproj -> C:\Users\Administrador\Desktop\Graficos-I-GameEngine\Graficos I (2019)\Debug\GameEngine.dll
+c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\include\gl\glew.h(85): fatal error C1189: #error:  gl.h included before glew.h
+  Renderer.cpp
+c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\include\gl\glew.h(85): fatal error C1189: #error:  gl.h included before glew.h
+  Window.cpp
+c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\include\gl\glew.h(85): fatal error C1189: #error:  gl.h included before glew.h
+  Generando código...
