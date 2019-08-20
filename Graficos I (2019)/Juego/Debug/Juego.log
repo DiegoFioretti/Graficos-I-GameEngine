@@ -1,4 +1,8 @@
 ﻿  Game.cpp
+c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(13): warning C4251: 'BaseGame::gameWindow': class 'Window' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
+  c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\window.h(10): note: vea la declaración de 'Window'
   GameMain.cpp
+c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(13): warning C4251: 'BaseGame::gameWindow': class 'Window' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
+  c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\window.h(10): note: vea la declaración de 'Window'
   Generando código...
-  Juego.vcxproj -> C:\Users\Administrador\Desktop\Graficos I GameEngine\Graficos I (2019)\Debug\Juego.exe
+  Juego.vcxproj -> C:\Users\Administrador\Desktop\Graficos-I-GameEngine\Graficos I (2019)\Debug\Juego.exe
