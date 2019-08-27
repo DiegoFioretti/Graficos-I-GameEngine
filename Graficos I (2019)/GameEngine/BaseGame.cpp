@@ -1,5 +1,5 @@
 #include "BaseGame.h"
-#include <GLFW/glfw3.h>
+
 BaseGame::BaseGame()
 {
 	gameWindow.CustomWindow(WIDTH, HEIGHT);

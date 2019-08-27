@@ -2,10 +2,9 @@
 #define RENDERER_H
 #pragma once
 
-#include "Window.h"
-#include <GLFW/glfw3.h>
 #include <GL/glew.h>
-#include <GL/GL.h>
+#include "Window.h"
+//#ifndef _glew_h_
 
 class Renderer
 {
@@ -13,6 +12,7 @@ public:
 	Renderer();
 	~Renderer();
 	void WindowRefresh(GLFWwindow* window);
-	void Draw();
+	//void Draw();
 };
-#endif
+//#endif  _glew_h_
+#endif RENDERER_H

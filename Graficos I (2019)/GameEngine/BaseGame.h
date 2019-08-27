@@ -2,9 +2,8 @@
 #define BASEGAME_H
 #pragma once
 
-
-#include "Window.h"
 #include "Renderer.h"
+#include "Window.h"
 #include <iostream>
 #define BASEGAMELIB __declspec(dllexport)
 
