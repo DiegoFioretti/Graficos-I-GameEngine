@@ -2,6 +2,15 @@
 
 Window::Window()
 {
+	glfwInit();
+
+	_window = glfwCreateWindow(WIDTH, HEIGHT, "Hello World", NULL, NULL);
+	if (!_window)
+	{
+		glfwTerminate();
+	}
+
+	glfwMakeContextCurrent(_window);
 }
 
 int Window::CustomWindow(int width, int height) 

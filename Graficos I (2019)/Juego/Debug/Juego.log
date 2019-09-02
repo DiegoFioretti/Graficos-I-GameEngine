@@ -1,12 +1,13 @@
 ﻿  Game.cpp
-c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(13): warning C4251: 'BaseGame::gameWindow': class 'Window' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
-  c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\window.h(10): note: vea la declaración de 'Window'
-c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(14): warning C4251: 'BaseGame::gameRender': class 'Renderer' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
-  c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\renderer.h(9): note: vea la declaración de 'Renderer'
+c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(13): warning C4251: 'BaseGame::gameWindow': class 'Window' needs to have dll-interface to be used by clients of class 'BaseGame'
+  c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\window.h(10): note: see declaration of 'Window'
+c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(14): warning C4251: 'BaseGame::gameRender': class 'Renderer' needs to have dll-interface to be used by clients of class 'BaseGame'
+  c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\renderer.h(9): note: see declaration of 'Renderer'
   GameMain.cpp
-c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(13): warning C4251: 'BaseGame::gameWindow': class 'Window' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
-  c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\window.h(10): note: vea la declaración de 'Window'
-c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(14): warning C4251: 'BaseGame::gameRender': class 'Renderer' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
-  c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\renderer.h(9): note: vea la declaración de 'Renderer'
-  Generando código...
-  Juego.vcxproj -> C:\Users\Administrador\Desktop\Graficos-I-GameEngine\Graficos I (2019)\Debug\Juego.exe
+c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(13): warning C4251: 'BaseGame::gameWindow': class 'Window' needs to have dll-interface to be used by clients of class 'BaseGame'
+  c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\window.h(10): note: see declaration of 'Window'
+c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(14): warning C4251: 'BaseGame::gameRender': class 'Renderer' needs to have dll-interface to be used by clients of class 'BaseGame'
+  c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\renderer.h(9): note: see declaration of 'Renderer'
+  Generating Code...
+     Creating library C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\Debug\Juego.lib and object C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\Debug\Juego.exp
+  Juego.vcxproj -> C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\Debug\Juego.exe

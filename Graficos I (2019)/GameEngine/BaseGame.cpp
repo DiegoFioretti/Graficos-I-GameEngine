@@ -2,7 +2,7 @@
 
 BaseGame::BaseGame()
 {
-	gameWindow.CustomWindow(WIDTH, HEIGHT);
+	//gameWindow.CustomWindow(WIDTH, HEIGHT);
 }
 
 BaseGame::~BaseGame()
