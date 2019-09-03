@@ -1,16 +1,8 @@
-﻿  BaseGame.cpp
-c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(13): warning C4251: 'BaseGame::gameWindow': class 'Window' needs to have dll-interface to be used by clients of class 'BaseGame'
-  c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\window.h(10): note: see declaration of 'Window'
-c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(14): warning C4251: 'BaseGame::gameRender': class 'Renderer' needs to have dll-interface to be used by clients of class 'BaseGame'
-  c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\renderer.h(9): note: see declaration of 'Renderer'
-  Renderer.cpp
-c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\renderer.cpp(34): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\renderer.cpp(36): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-  Window.cpp
-  Generating Code...
-c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\window.cpp(29): warning C4715: 'Window::CustomWindow': not all control paths return a value
-     Creating library C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\Debug\GameEngine.lib and object C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\Debug\GameEngine.exp
-LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\Debug\vc120.pdb'; linking object as if no debug info
-  GameEngine.vcxproj -> C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\Debug\GameEngine.dll
+﻿  Renderer.cpp
+c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\renderer.cpp(38): warning C4305: 'argumento': truncamiento de 'double' a 'GLclampf'
+c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\renderer.cpp(40): warning C4305: 'argumento': truncamiento de 'double' a 'GLclampf'
+     Creando biblioteca C:\Users\Administrador\Desktop\Graficos-I-GameEngine\Graficos I (2019)\Debug\GameEngine.lib y objeto C:\Users\Administrador\Desktop\Graficos-I-GameEngine\Graficos I (2019)\Debug\GameEngine.exp
+LINK : warning LNK4098: la biblioteca predeterminada'LIBCMT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
+LINK : warning LNK4098: la biblioteca predeterminada'MSVCRT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
+glew32s.lib(glew.obj) : warning LNK4099: no se encontr¾ PDB 'vc120.pdb' con 'glew32s.lib(glew.obj)' o en 'C:\Users\Administrador\Desktop\Graficos-I-GameEngine\Graficos I (2019)\Debug\vc120.pdb'; se vincularß el objeto sin tener en cuenta informaci¾n de depuraci¾n
+  GameEngine.vcxproj -> C:\Users\Administrador\Desktop\Graficos-I-GameEngine\Graficos I (2019)\Debug\GameEngine.dll

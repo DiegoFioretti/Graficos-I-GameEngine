@@ -1,7 +1,11 @@
 #include "Renderer.h"
+#include <glm/glm.hpp>
+#include <glm/gtx/transform.hpp>
 
 Renderer::Renderer()
 {
+	static glm::mat4 myMatrix = glm::translate(glm::mat4(), glm::vec3(10.0f, 0.0f, 0.0f));
+
 	glewInit();
 
 	static const GLfloat vertices[] = {
