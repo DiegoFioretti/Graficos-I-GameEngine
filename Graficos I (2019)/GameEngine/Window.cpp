@@ -2,30 +2,22 @@
 
 Window::Window()
 {
+	//??
 	glfwInit();
-
+	//Creacion de la ventana (ancho, alto, nombre , el monitor a usar en full screen o null en ventana, para compartir recursos de la ventana o null )
 	_window = glfwCreateWindow(WIDTH, HEIGHT, "Hello World", NULL, NULL);
+	//Si la ventana no esta abierta cierra todo
 	if (!_window)
 	{
 		glfwTerminate();
 	}
-
+	//Hace que haya un thread ocupado en la mantencion de la ventana
 	glfwMakeContextCurrent(_window);
 }
 
 int Window::CustomWindow(int width, int height) 
 {
-	if (!glfwInit())
-		return -1;
-
-	_window = glfwCreateWindow(width, height, "Hello World", NULL, NULL);
-	if (!_window)
-	{
-		glfwTerminate();
-		return -1;
-	}
-
-	glfwMakeContextCurrent(_window);
+	return 0;
 }
 
 Window::~Window()

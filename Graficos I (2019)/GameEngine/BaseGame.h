@@ -4,6 +4,7 @@
 
 #include "Renderer.h"
 #include "Window.h"
+#include <Windows.h>
 #include <iostream>
 #define BASEGAMELIB __declspec(dllexport)
 

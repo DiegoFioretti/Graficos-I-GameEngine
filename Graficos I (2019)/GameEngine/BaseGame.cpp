@@ -2,7 +2,8 @@
 
 BaseGame::BaseGame()
 {
-	//gameWindow.CustomWindow(WIDTH, HEIGHT);
+	//Esconde la consola
+	::ShowWindow(::GetConsoleWindow(), SW_HIDE);
 }
 
 BaseGame::~BaseGame()
@@ -11,37 +12,13 @@ BaseGame::~BaseGame()
 
 int BaseGame::ScreenInit() 
 {
-	//GLFWwindow* window;
 
-	/* Initialize the library 
-	if (!glfwInit())
-		return -1;*/
-
-	/* Create a windowed mode window and its OpenGL context 
-	window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-	if (!window)
-	{
-		glfwTerminate();
-		return -1;
-	}*/
-
-	/* Make the window's context current */
-	//glfwMakeContextCurrent(gameWindow.window());
-
-	/* Loop until the user closes the window */
+	//Loop que continua hasta no cerrar la ventana
 	while (!glfwWindowShouldClose(gameWindow.window()))
-	{
-		/* Render here 
-		glClear(GL_COLOR_BUFFER_BIT);
-
-		/* Swap front and back buffers 
-		glfwSwapBuffers(gameWindow.window());
-
-		/* Poll for and process events 
-		glfwPollEvents();*/
+	{	
 		gameRender.WindowRefresh(gameWindow.window());
 	}
-
+	//Esta funcion destruye todas las ventanas y libera los recursos utilizados y deja la libreria en un estado no inicializado 
 	glfwTerminate();
 	return 0;
 }
