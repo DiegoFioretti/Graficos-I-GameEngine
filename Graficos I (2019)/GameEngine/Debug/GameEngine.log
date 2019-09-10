@@ -1,2 +1,3 @@
-﻿  Window.cpp
-  GameEngine.vcxproj -> C:\Users\Gonza\Desktop\Graficos-I-GameEngine\Graficos I (2019)\Debug\GameEngine.dll
+﻿  Renderer.cpp
+c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\renderer.cpp(104): warning C4305: 'argumento': truncamiento de 'double' a 'GLclampf'
+  GameEngine.vcxproj -> C:\Users\Administrador\Desktop\Graficos-I-GameEngine\Graficos I (2019)\Debug\GameEngine.dll

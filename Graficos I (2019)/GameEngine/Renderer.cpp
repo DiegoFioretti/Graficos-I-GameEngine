@@ -1,38 +1,96 @@
 #include "Renderer.h"
 #include <glm/glm.hpp>
-#include <glm/gtx/transform.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
+const char* vertexSource = R"glsl(
+    #version 150 core
+	in vec2 position;
+    in vec3 color;
+    out vec3 Color;
+    void main()
+    {
+		Color = color;
+        gl_Position = vec4(position, 0.0, 1.0);
+    }
+)glsl";
+
+const char* fragmentSource = R"glsl(
+    #version 150 core
+	in vec3 Color;
+    out vec4 outColor;
+
+    void main()
+    {
+        outColor = vec4(Color, 1.0);
+    }
+)glsl";
 
 Renderer::Renderer()
 {
-	//??
-	static glm::mat4 myMatrix = glm::translate(glm::mat4(), glm::vec3(10.0f, 0.0f, 0.0f));
 	//Inicializa las librerias de GLEW
 	glewInit();
-	
-	//Se le asignan los 3 vertices para crear el triangulo (X,Y,Z);
-	static const GLfloat vertices[] = {
-		0.0f, 1.0f, 0.0f,
-		-1.0f, 0.0f, 0.0f,
-		1.0f, 0.0f, 0.0f,
+
+	GLfloat vertices[] = {
+		-0.5f,  0.5f, 1.0f, // Top-left
+		 0.5f,  0.5f, 0.0f, // Top-right
+		 0.5f, -0.5f, 0.0f, // Bottom-right
+		-0.5f, -0.5f, 1.0f // Bottom-left
 	};
 
+	GLuint elements[] = {
+		0, 1, 2,
+		2, 3, 0
+	};
+
+	static GLuint vao;
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
+
 	//Un uint tiene un tamaño diferente dependiendo la plataforma que se use, el GLuint se adapta a la plataforma
-	GLuint VBO;
+	static GLuint VBO;
 	//Genera buffers(la cantidad de buffers, especifica un array donde los buffers seran guardados)
 	glGenBuffers(1, &VBO);
 	//Lo enlaza al buffer creado(Especifica que va a contener el buffer, da el nombre del buffer)
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	//Crea e inicializa el buffer(Especifica el objeto al cual el buffer esta enlazado,el tamaño que va a tener, el puntero, el patron de uso)
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	//Activa el atributo generico de los vertices(Se especifica el indice)
+	
+	GLuint ebo;
+	glGenBuffers(1, &ebo);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
+
+	static GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(vertexShader, 1, &vertexSource, NULL);
+	glCompileShader(vertexShader);
+
+	static GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
+	glCompileShader(fragmentShader);
+
+	static GLuint shaderProgram = glCreateProgram();
+	glAttachShader(shaderProgram, vertexShader);
+	glAttachShader(shaderProgram, fragmentShader);
+	glBindFragDataLocation(shaderProgram, 0, "outColor");
+	glLinkProgram(shaderProgram);
+	glUseProgram(shaderProgram);
+
+	static GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
+	glEnableVertexAttribArray(posAttrib);
+	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 0, 0);
+
+	static GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
+	glEnableVertexAttribArray(colAttrib);
+	glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(float)));
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
-	//Define un array de atributos genericos para el vertice (
-	glVertexAttribPointer(	0,			//Especifica el indice para ser modificado
-							3,			//la cant de componentes
-							GL_FLOAT,	//el tipo de dato
-							GL_FALSE,	//si lo tiene que normalizar
-							0,			//El es desplazamiento de bytes entre los atributos, si se ingresa 0 se entiende que tienen que estar comprimidos
-							0);			//Es el desplazamiento del primer componente del primer vertice generico. Se inicializa en 0
+	/*glm::mat4 trans = glm::mat4(1.0f);
+	trans = glm::rotate(trans, glm::radians(180.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	glm::vec4 result = trans * glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
+	GLint uniTrans = glGetUniformLocation(shaderProgram, "trans");
+	glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(trans));*/
 }
 
 
@@ -47,7 +105,8 @@ void Renderer::WindowRefresh(GLFWwindow* window)
 	//Limpia el buffer con el color creado
 	glClear(GL_COLOR_BUFFER_BIT);
 	//Reneriza las primitivas(Que primitivas renderizar, especifica el indice inicial, el numero de indices para ser renderizados )
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	//glDrawArrays(GL_TRIANGLES, 0, 3);
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	//Invierte el buffer frontal y el de atras
 	glfwSwapBuffers(window);
 	//Esta funcion procesa solo los eventos que ya estan en la cola, el procesamiento de eventos hace que se invoquen las devoluciones de llamada de la ventana
