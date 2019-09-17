@@ -1,21 +1,3 @@
-﻿  BaseGame.cpp
-c:\program files (x86)\windows kits\10\include\10.0.17763.0\shared\minwindef.h(130): warning C4005: 'APIENTRY': macro redefinition
-  c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\include\glfw\glfw3.h(104): note: see previous definition of 'APIENTRY'
-c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(15): warning C4251: 'BaseGame::gameWindow': class 'Window' needs to have dll-interface to be used by clients of class 'BaseGame'
-  c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\window.h(10): note: see declaration of 'Window'
-c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(16): warning C4251: 'BaseGame::gameRender': class 'Renderer' needs to have dll-interface to be used by clients of class 'BaseGame'
-  c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\renderer.h(11): note: see declaration of 'Renderer'
-c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\basegame.h(17): warning C4251: 'BaseGame::shapes': class 'std::vector<Shape,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of class 'BaseGame'
-          with
-          [
-              _Ty=Shape
-          ]
-  c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\renderer.h(14): note: see declaration of 'std::vector<Shape,std::allocator<_Ty>>'
-          with
-          [
-              _Ty=Shape
-          ]
-  Renderer.cpp
-c:\users\nikolaus\documents\clones\graficos-i-gameengine\graficos i (2019)\gameengine\renderer.cpp(148): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-  Generating Code...
-  GameEngine.vcxproj -> C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\Debug\GameEngine.dll
+﻿  Renderer.cpp
+c:\users\administrador\desktop\graficos-i-gameengine\graficos i (2019)\gameengine\renderer.cpp(130): warning C4305: 'argumento': truncamiento de 'double' a 'GLclampf'
+  GameEngine.vcxproj -> C:\Users\Administrador\Desktop\Graficos-I-GameEngine\Graficos I (2019)\Debug\GameEngine.dll

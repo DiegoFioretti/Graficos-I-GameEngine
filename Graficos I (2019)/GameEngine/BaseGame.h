@@ -6,7 +6,6 @@
 #include "Window.h"
 #include <Windows.h>
 #include <iostream>
-#include <vector>
 #define BASEGAMELIB __declspec(dllexport)
 
 class BASEGAMELIB BaseGame
@@ -14,8 +13,6 @@ class BASEGAMELIB BaseGame
 private: 
 	Window gameWindow;
 	Renderer gameRender;
-	std::vector<Shape> shapes;
-	std::vector<Shape>::iterator shapeIterator;
 public:
 	BaseGame();
 	int ScreenInit();
