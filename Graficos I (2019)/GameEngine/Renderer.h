@@ -3,7 +3,9 @@
 #pragma once
 
 #include <GL/glew.h>
+#include <vector>
 #include "Window.h"
+#include "Shape.h"
 //#ifndef _glew_h_
 
 class Renderer
@@ -11,7 +13,8 @@ class Renderer
 public:
 	Renderer();
 	~Renderer();
-	void WindowRefresh(GLFWwindow* window);
+	void AddShape(std::vector<Shape>& auxShapes);
+	void WindowRefresh(GLFWwindow* window, std::vector<Shape>& auxShapes);
 	//void Draw();
 };
 //#endif  _glew_h_
