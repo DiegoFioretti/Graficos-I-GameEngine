@@ -4,6 +4,7 @@
 
 #include "Renderer.h"
 #include "Window.h"
+#include "Input.h"
 #include <Windows.h>
 #include <iostream>
 #define BASEGAMELIB __declspec(dllexport)
@@ -11,6 +12,7 @@
 class BASEGAMELIB BaseGame
 {
 private: 
+	Input gameInput;
 	Window gameWindow;
 	Renderer gameRender;
 public:

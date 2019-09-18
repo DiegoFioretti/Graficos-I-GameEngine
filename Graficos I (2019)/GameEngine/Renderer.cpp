@@ -133,6 +133,9 @@ void Renderer::WindowRefresh(GLFWwindow* window)
 	//Reneriza las primitivas(Que primitivas renderizar, especifica el indice inicial, el numero de indices para ser renderizados )
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	//Invierte el buffer frontal y el de atras
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();             // save the current GL_MODELVIEW matrix 
+	glRotatef(+4, 0, 1, 0);
 	glfwSwapBuffers(window);
 	//Esta funcion procesa solo los eventos que ya estan en la cola, el procesamiento de eventos hace que se invoquen las devoluciones de llamada de la ventana
 	glfwPollEvents();
