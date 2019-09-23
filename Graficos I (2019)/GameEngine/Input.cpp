@@ -12,19 +12,17 @@ Input::~Input()
 {
 }
 
-void Input::key_callback_static(GLFWwindow* window, int key, int scancode, int action, int mods)
-{
-	//cout << key << endl;
-	switch (key)
-	{
+float Input::keyE(float rotate) {
 
-	case 256:
-		glfwDestroyWindow(window);
-		break;
-	default:
-		break;
-	}
+	rotate--;
+	return rotate;
 }
+float Input::keyQ(float rotate) {
+
+	rotate++;
+	return rotate;
+}
+
 // 256	scape		salir
 // 87	w			movimiento
 // 65	a			"

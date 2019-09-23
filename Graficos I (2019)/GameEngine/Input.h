@@ -11,7 +11,8 @@ private:
 public:
 	Input();
 	~Input();
-	static void key_callback_static(GLFWwindow* window, int key, int scancode, int action, int mods);
+	float keyE(float rotate);
+	float keyQ(float rotate);
 };
 
 #endif INPUT_H
