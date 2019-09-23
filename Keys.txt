@@ -1,0 +1,5 @@
+WASD= Movimiento
+YU=rotacion en X
+HJ=rotacion en y
+NM=rotacion en z
+flechas= ampliar achicar el tamano

@@ -12,22 +12,86 @@ Input::~Input()
 {
 }
 
-float Input::keyE(float rotate) {
+//======================================== MOVIMIENTO ========================================
+float Input::keyW(float posicionY) {
 
-	rotate--;
-	return rotate;
+	posicionY+= 0.01f;
+	return posicionY;
 }
-float Input::keyQ(float rotate) {
+float Input::keyA(float posicionY) {
 
-	rotate++;
-	return rotate;
+	posicionY -= 0.01f;
+	return posicionY;
 }
+float Input::keyS(float posicionX) {
 
-// 256	scape		salir
-// 87	w			movimiento
-// 65	a			"
-// 83	s			"
-// 68	d			"
-// 81	q			rotacion
-// 69	e			"
-// 67	c			color
+	posicionX -= 0.01f;
+	return posicionX;
+}
+float Input::keyD(float posicionX) {
+
+	posicionX += 0.01f;
+	return posicionX;
+}
+//======================================== TAMANO ========================================
+//Tamano x
+float Input::keyUP(float sizeX) {
+
+	sizeX += 0.01f;
+	return sizeX;
+}
+float Input::keyDOWN(float sizeX) {
+
+	sizeX -= 0.01f;
+	return sizeX;
+}
+//Tamano y
+float Input::keyLEFT(float sizeY) {
+
+	sizeY -= 0.01f;
+	return sizeY;
+}
+//Tamano z
+float Input::keyRIGHT(float sizeY) {
+
+	sizeY += 0.01f;
+	return sizeY;
+}
+//======================================== ROTACIONES ========================================
+//Rotaciones x
+float Input::keyY(float rotateX) {
+
+	rotateX--;
+	return rotateX;
+}
+float Input::keyU(float rotateX) {
+
+	rotateX++;
+	return rotateX;
+}
+//Rotaciones y
+float Input::keyH(float rotateY) {
+
+	rotateY--;
+	return rotateY;
+}
+float Input::keyJ(float rotateY) {
+
+	rotateY++;
+	return rotateY;
+}
+//Rotaciones z
+float Input::keyN(float rotateZ) {
+
+	rotateZ--;
+	return rotateZ;
+}
+float Input::keyM(float rotateZ) {
+
+	rotateZ++;
+	return rotateZ;
+}
+//========================================CERRAR VENTANA========================================
+void Input::keyEsc(GLFWwindow* window) {
+	glfwDestroyWindow(window);
+}

@@ -55,7 +55,7 @@ Renderer::Renderer()
 	glGenBuffers(1, &vbo);
 
 	GLfloat vertices[] = {
-		//  Position      Color             Texcoords
+		//  Position            Color             Texcoords
 			-0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, // Top-left
 			 0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // Top-right
 			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, // Bottom-right
@@ -108,22 +108,8 @@ Renderer::Renderer()
 	glEnableVertexAttribArray(texAttrib);
 	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), (void*)(5 * sizeof(GLfloat)));
 
-	// Set up projection
-	glm::mat4 view = glm::lookAt(
-		glm::vec3(1.2f, 1.2f, 1.2f),
-		glm::vec3(0.0f, 0.0f, 0.0f),
-		glm::vec3(0.0f, 0.0f, 1.0f)
-	);
-	GLint uniView = glGetUniformLocation(shaderProgram, "view");
-	glUniformMatrix4fv(uniView, 1, GL_FALSE, glm::value_ptr(view));
 
-	glm::mat4 proj = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 1.0f, 10.0f);
-	GLint uniProj = glGetUniformLocation(shaderProgram, "proj");
-	glUniformMatrix4fv(uniProj, 1, GL_FALSE, glm::value_ptr(proj));
-
-	
 	uniTrans = glGetUniformLocation(shaderProgram, "trans");
-	
 	
 
 }
@@ -149,10 +135,16 @@ void Renderer::WindowRefresh(GLFWwindow* window)
 	glClear(GL_COLOR_BUFFER_BIT);
 	//Reneriza las primitivas(Que primitivas renderizar, especifica el indice inicial, el numero de indices para ser renderizados )
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
-	
 	glm::mat4 trans = glm::mat4(1.0f);
-	trans = glm::rotate(trans, glm::radians(rotate), glm::vec3(0.0f, 0.0f, 1.0f));
+	//posicion
+	trans = glm::translate(trans, glm::vec3(posicionX, posicionY, posicionZ));
+	//rotacion
+	trans = glm::rotate(trans, glm::radians(rotateZ), glm::vec3(0.0f, 0.0f, 1.0f));
+	trans = glm::rotate(trans, glm::radians(rotateY), glm::vec3(0.0f, 1.0f, 0.0f));
+	trans = glm::rotate(trans, glm::radians(rotateX), glm::vec3(1.0f, 0.0f, 0.0f));
+	//tamano
+	trans = glm::scale(trans, glm::vec3(sizeX, sizeY, sizeZ));
+
 	glm::vec4 result = trans * glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
 	glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(trans));
 	
