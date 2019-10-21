@@ -39,7 +39,7 @@ const GLchar* fragmentSource = R"glsl(
 
     void main()
     {
-        outColor = texture(myTexture, textCoord) * vec4(Color, 1.0);
+        outColor = vec4(Color, 1.0);
     }
 )glsl";
 
@@ -176,14 +176,6 @@ void Renderer::newShape() {
 	glGenBuffers(1, &vbo);
 
 	Shape shaper;
-
-	/*GLfloat veatrices[] = {
-		//  Position            Color             Texcoords
-			-0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, // Top-left
-			 0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // Top-right
-			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, // Bottom-right
-			-0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f  // Bottom-left
-	};*/
 	
 	GLfloat vertices[SIZESQV];
 
@@ -195,11 +187,6 @@ void Renderer::newShape() {
 	// Create an element array
 	GLuint ebo;
 	glGenBuffers(1, &ebo);
-
-	/*GLuint elements[] = {
-		0, 1, 2,
-		2, 3, 0
-	};*/
 
 	GLuint elements[SIZESQE];
 
@@ -226,7 +213,41 @@ void Renderer::newShape() {
 	glLinkProgram(shaderProgram);
 	glUseProgram(shaderProgram);
 
-	// Specify the layout of the vertex data
+	//-------------------------------------------TEXTURES-------------------------------------------------------
+	/*unsigned int texture;
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	// set the texture wrapping/filtering options (on the currently bound texture object)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	// load and generate the texture
+	int width, height, nrChannels;
+	unsigned char* data = stbi_load("../texture.png", &width, &height, &nrChannels, 0);
+	if (data)
+	{
+		std::cout << "Width " << width << std::endl;
+		std::cout << "Height " << height << std::endl;
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(data);
+
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	glEnableVertexAttribArray(2);
+
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glBindVertexArray(vao);
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);*/
+	//-------------------------------------------TRANSFORM-------------------------------------------------------
+		// Specify the layout of the vertex data
 	GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
 	glEnableVertexAttribArray(posAttrib);
 	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), 0);
