@@ -16,7 +16,7 @@ BaseGame::~BaseGame()
 
 int BaseGame::ScreenInit() 
 {
-	
+	gameRender.newShape();
 	//Loop que continua hasta no cerrar la ventana
 	while (!glfwWindowShouldClose(gameWindow.window()))
 	{	

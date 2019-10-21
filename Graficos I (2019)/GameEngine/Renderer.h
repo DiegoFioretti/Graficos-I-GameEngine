@@ -18,10 +18,7 @@ private:
 	GLint uniTrans;
 	GLint uniProj;
 	GLint uniView;
-	
-
 public:
-	
 	float rotateX = 0.0f;
 	float rotateY = 0.0f;
 	float rotateZ = 0.0f;
@@ -33,6 +30,7 @@ public:
 	float sizeZ = 0.5f;
 	Renderer();
 	~Renderer();
+	void newShape();
 	void WindowRefresh(GLFWwindow* window);
 };
 

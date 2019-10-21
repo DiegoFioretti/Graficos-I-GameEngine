@@ -1,20 +1,20 @@
 ﻿  Game.cpp
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\minwindef.h(130): warning C4005: 'APIENTRY': redefinición de macro
-  C:\Users\Gonzalo\Desktop\Graficos-I-GameEngine\Graficos I (2019)\include\GLFW\glfw3.h(104): note: vea la definición anterior de 'APIENTRY'
-C:\Users\Gonzalo\Desktop\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\BaseGame.h(16): warning C4251: 'BaseGame::gameInput': class 'Input' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
-  C:\Users\Gonzalo\Desktop\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\Input.h(7): note: vea la declaración de 'Input'
-C:\Users\Gonzalo\Desktop\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\BaseGame.h(17): warning C4251: 'BaseGame::gameWindow': class 'Window' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
-  C:\Users\Gonzalo\Desktop\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\Window.h(10): note: vea la declaración de 'Window'
-C:\Users\Gonzalo\Desktop\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\BaseGame.h(18): warning C4251: 'BaseGame::gameRender': class 'Renderer' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
-  C:\Users\Gonzalo\Desktop\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\Renderer.h(14): note: vea la declaración de 'Renderer'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\include\GLFW\glfw3.h(104): message : see previous definition of 'APIENTRY'
+C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\BaseGame.h(16,17): warning C4251: 'BaseGame::gameInput': class 'Input' needs to have dll-interface to be used by clients of class 'BaseGame'
+C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\Input.h(7): message : see declaration of 'Input'
+C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\BaseGame.h(17,19): warning C4251: 'BaseGame::gameWindow': class 'Window' needs to have dll-interface to be used by clients of class 'BaseGame'
+C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\Window.h(10): message : see declaration of 'Window'
+C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\BaseGame.h(18,21): warning C4251: 'BaseGame::gameRender': class 'Renderer' needs to have dll-interface to be used by clients of class 'BaseGame'
   GameMain.cpp
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\minwindef.h(130): warning C4005: 'APIENTRY': redefinición de macro
-  C:\Users\Gonzalo\Desktop\Graficos-I-GameEngine\Graficos I (2019)\include\GLFW\glfw3.h(104): note: vea la definición anterior de 'APIENTRY'
-C:\Users\Gonzalo\Desktop\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\BaseGame.h(16): warning C4251: 'BaseGame::gameInput': class 'Input' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
-  C:\Users\Gonzalo\Desktop\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\Input.h(7): note: vea la declaración de 'Input'
-C:\Users\Gonzalo\Desktop\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\BaseGame.h(17): warning C4251: 'BaseGame::gameWindow': class 'Window' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
-  C:\Users\Gonzalo\Desktop\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\Window.h(10): note: vea la declaración de 'Window'
-C:\Users\Gonzalo\Desktop\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\BaseGame.h(18): warning C4251: 'BaseGame::gameRender': class 'Renderer' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
-  C:\Users\Gonzalo\Desktop\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\Renderer.h(14): note: vea la declaración de 'Renderer'
-  Generando código...
-  Juego.vcxproj -> C:\Users\Gonzalo\Desktop\Graficos-I-GameEngine\Graficos I (2019)\Debug\Juego.exe
+C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\Renderer.h(14): message : see declaration of 'Renderer'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\include\GLFW\glfw3.h(104): message : see previous definition of 'APIENTRY'
+C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\BaseGame.h(16,17): warning C4251: 'BaseGame::gameInput': class 'Input' needs to have dll-interface to be used by clients of class 'BaseGame'
+C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\Input.h(7): message : see declaration of 'Input'
+C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\BaseGame.h(17,19): warning C4251: 'BaseGame::gameWindow': class 'Window' needs to have dll-interface to be used by clients of class 'BaseGame'
+C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\Window.h(10): message : see declaration of 'Window'
+C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\BaseGame.h(18,21): warning C4251: 'BaseGame::gameRender': class 'Renderer' needs to have dll-interface to be used by clients of class 'BaseGame'
+  Generating Code...
+C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\Renderer.h(14): message : see declaration of 'Renderer'
+  Juego.vcxproj -> C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\Debug\Juego.exe
