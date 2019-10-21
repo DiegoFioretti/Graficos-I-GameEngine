@@ -2,32 +2,25 @@
 #include <iostream>
 
 using namespace std;
-Shape::Shape()
-{
+Shape::Shape(){
 }
 
 Shape::~Shape()
 {
 }
 
-GLfloat* Shape::getVertex() 
+void Shape::setSquareVertex(GLfloat (&vertex)[SIZESQV])
 {
-	GLfloat _vertex[] = {
-		   -0.5f,  0.5f, 1.0f, // Top-left
-			0.5f,  0.5f, 0.0f, // Top-right
-			0.5f, -0.5f, 0.0f, // Bottom-right
-		   -0.5f, -0.5f, 1.0f // Bottom-left
-	};
-	
-	return _vertex;
+	for (int i = 0; i < SIZESQV; i++)
+	{
+		vertex[i] = _sqVertex[i];
+	}
 }
 
-GLuint* Shape::getElements() 
+void Shape::setSquareElements(GLuint (&elements)[SIZESQE])
 {
-	GLuint _elements[] = {
-		0, 1, 2,
-		2, 3, 0
-	};
-
-	return _elements;
+	for (int i = 0; i < SIZESQE; i++)
+	{
+		elements[i] = _sqElements[i];
+	}
 }

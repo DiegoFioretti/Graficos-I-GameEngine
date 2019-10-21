@@ -51,7 +51,7 @@ Renderer::Renderer()
 	// Initialize GLEW
 	glewExperimental = GL_TRUE;
 	glewInit();
-
+	/*
 	// Create Vertex Array Object
 	GLuint vao;
 	glGenVertexArrays(1, &vao);
@@ -63,9 +63,15 @@ Renderer::Renderer()
 
 	GLfloat vertices[] = {
 		//  Position            Color             Texcoords
+<<<<<<< HEAD
 			-0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, // Top-left
 			 0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, // Top-right
 			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, // Bottom-right
+=======
+			-0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, // Top-left
+			 0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // Top-right
+			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, // Bottom-right
+>>>>>>> Shape
 			-0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f  // Bottom-left
 	};
 
@@ -151,7 +157,7 @@ Renderer::Renderer()
 
 	uniTrans = glGetUniformLocation(shaderProgram, "trans");
 	
-
+	*/
 }
 
 
@@ -159,7 +165,83 @@ Renderer::~Renderer()
 {
 }
 
+void Renderer::newShape() {
+	// Create Vertex Array Object
+	GLuint vao;
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
 
+	// Create a Vertex Buffer Object and copy the vertex data to it
+	GLuint vbo;
+	glGenBuffers(1, &vbo);
+
+	Shape shaper;
+
+	/*GLfloat veatrices[] = {
+		//  Position            Color             Texcoords
+			-0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, // Top-left
+			 0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // Top-right
+			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, // Bottom-right
+			-0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f  // Bottom-left
+	};*/
+	
+	GLfloat vertices[SIZESQV];
+
+	shaper.setSquareVertex(vertices);
+
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	// Create an element array
+	GLuint ebo;
+	glGenBuffers(1, &ebo);
+
+	/*GLuint elements[] = {
+		0, 1, 2,
+		2, 3, 0
+	};*/
+
+	GLuint elements[SIZESQE];
+
+	shaper.setSquareElements(elements);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
+
+	// Create and compile the vertex shader
+	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(vertexShader, 1, &vertexSource, NULL);
+	glCompileShader(vertexShader);
+
+	// Create and compile the fragment shader
+	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
+	glCompileShader(fragmentShader);
+
+	// Link the vertex and fragment shader into a shader program
+	GLuint shaderProgram = glCreateProgram();
+	glAttachShader(shaderProgram, vertexShader);
+	glAttachShader(shaderProgram, fragmentShader);
+	glBindFragDataLocation(shaderProgram, 0, "outColor");
+	glLinkProgram(shaderProgram);
+	glUseProgram(shaderProgram);
+
+	// Specify the layout of the vertex data
+	GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
+	glEnableVertexAttribArray(posAttrib);
+	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), 0);
+
+	GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
+	glEnableVertexAttribArray(colAttrib);
+	glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)));
+
+	GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
+	glEnableVertexAttribArray(texAttrib);
+	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), (void*)(5 * sizeof(GLfloat)));
+
+
+	uniTrans = glGetUniformLocation(shaderProgram, "trans");
+}
 
 void Renderer::WindowRefresh(GLFWwindow* window)
 {
