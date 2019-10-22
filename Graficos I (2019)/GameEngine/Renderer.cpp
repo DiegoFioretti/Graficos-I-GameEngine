@@ -5,6 +5,8 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <chrono>
 
+#include <array>
+
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
@@ -177,23 +179,23 @@ void Renderer::newShape() {
 
 	Shape shaper;
 	
-	GLfloat vertices[SIZESQV];
+	//GLfloat vertices[SIZESQV];
 
-	shaper.setSquareVertex(vertices);
-
+	//shaper.setSquareVertex(vertices);
+	
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(shaper.getSquareVertices()), &shaper.getSquareVertices(), GL_STATIC_DRAW);
 
 	// Create an element array
 	GLuint ebo;
 	glGenBuffers(1, &ebo);
 
-	GLuint elements[SIZESQE];
+	//GLuint elements[SIZESQE];
 
-	shaper.setSquareElements(elements);
+	//shaper.setSquareElements(elements);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(shaper.getSquareElements()), &shaper.getSquareElements(), GL_STATIC_DRAW);
 
 	// Create and compile the vertex shader
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
