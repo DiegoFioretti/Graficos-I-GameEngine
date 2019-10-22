@@ -12,10 +12,10 @@ Entity::~Entity()
 
 array<GLfloat, SIZESQV> Entity::getVertices()
 {
-	return shaper.getSquareVertices;
+	return shaper.getSquareVertices();
 }
 
 array<GLuint, SIZESQE> Entity::getElements()
 {
-
+	return shaper.getSquareElements();
 }

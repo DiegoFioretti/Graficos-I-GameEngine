@@ -21,7 +21,5 @@ public:
 	int ScreenInit();
 	~BaseGame();
 	void KeyCallback(GLFWwindow* window);
-	
-
 };
 #endif

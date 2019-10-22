@@ -2,22 +2,26 @@
 #define RENDERER_H
 #pragma once
 
+#define MAXENTITIES 10
 
 #include <GL/glew.h>
 #include "Window.h"
-#include "Shape.h"
+#include "Entity.h"
 #include <iostream>
-
 
 using namespace std;
 
 class Renderer
 {
 private:
+	GLuint vao;
+	GLuint vbo;
+	GLuint ebo;
 	bool chronoAct = true;
 	GLint uniTrans;
 	GLint uniProj;
 	GLint uniView;
+	Entity gameEntities[MAXENTITIES];
 public:
 	float rotateX = 0.0f;
 	float rotateY = 0.0f;
