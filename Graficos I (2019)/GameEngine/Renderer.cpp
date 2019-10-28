@@ -5,6 +5,8 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <chrono>
 
+#include <array>
+
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
@@ -47,10 +49,23 @@ const GLchar* fragmentSource = R"glsl(
 
 Renderer::Renderer()
 {
-
 	// Initialize GLEW
 	glewExperimental = GL_TRUE;
 	glewInit();
+	// Create Vertex Array Object
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
+
+	// Create a Vertex Buffer Object and copy the vertex data to it
+	glGenBuffers(1, &vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+
+	// Create an element array
+	glGenBuffers(1, &ebo);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+
+	Entity simple;
+	gameEntities[0] = simple;
 	/*
 	// Create Vertex Array Object
 	GLuint vao;
@@ -163,37 +178,13 @@ Renderer::Renderer()
 
 Renderer::~Renderer()
 {
+
 }
 
 void Renderer::newShape() {
-	// Create Vertex Array Object
-	GLuint vao;
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(gameEntities[0].getVertices()), &gameEntities[0].getVertices(), GL_STATIC_DRAW);
 
-	// Create a Vertex Buffer Object and copy the vertex data to it
-	GLuint vbo;
-	glGenBuffers(1, &vbo);
-
-	Shape shaper;
-	
-	GLfloat vertices[SIZESQV];
-
-	shaper.setSquareVertex(vertices);
-
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-	// Create an element array
-	GLuint ebo;
-	glGenBuffers(1, &ebo);
-
-	GLuint elements[SIZESQE];
-
-	shaper.setSquareElements(elements);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(gameEntities[0].getElements()), &gameEntities[0].getElements(), GL_STATIC_DRAW);
 
 	// Create and compile the vertex shader
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -259,7 +250,6 @@ void Renderer::newShape() {
 	GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
 	glEnableVertexAttribArray(texAttrib);
 	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), (void*)(5 * sizeof(GLfloat)));
-
 
 	uniTrans = glGetUniformLocation(shaderProgram, "trans");
 }
