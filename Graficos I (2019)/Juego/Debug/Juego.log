@@ -1,1 +1,21 @@
-﻿  Juego.vcxproj -> C:\Users\Nikolaus\Documents\Clones\Graficos-I-GameEngine\Graficos I (2019)\Debug\Juego.exe
+﻿  Game.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': redefinición de macro
+C:\Users\Gonza\Downloads\Graficos-I-GameEngine\Graficos I (2019)\include\GLFW\glfw3.h(104): message : vea la definición anterior de 'APIENTRY'
+C:\Users\Gonza\Downloads\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\BaseGame.h(16,17): warning C4251: 'BaseGame::gameInput': class 'Input' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
+C:\Users\Gonza\Downloads\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\Input.h(7): message : vea la declaración de 'Input'
+C:\Users\Gonza\Downloads\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\BaseGame.h(17,19): warning C4251: 'BaseGame::gameWindow': class 'Window' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
+C:\Users\Gonza\Downloads\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\Window.h(10): message : vea la declaración de 'Window'
+C:\Users\Gonza\Downloads\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\BaseGame.h(18,21): warning C4251: 'BaseGame::gameRender': class 'Renderer' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
+  GameMain.cpp
+C:\Users\Gonza\Downloads\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\Renderer.h(14): message : vea la declaración de 'Renderer'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': redefinición de macro
+C:\Users\Gonza\Downloads\Graficos-I-GameEngine\Graficos I (2019)\include\GLFW\glfw3.h(104): message : vea la definición anterior de 'APIENTRY'
+C:\Users\Gonza\Downloads\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\BaseGame.h(16,17): warning C4251: 'BaseGame::gameInput': class 'Input' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
+C:\Users\Gonza\Downloads\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\Input.h(7): message : vea la declaración de 'Input'
+C:\Users\Gonza\Downloads\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\BaseGame.h(17,19): warning C4251: 'BaseGame::gameWindow': class 'Window' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
+C:\Users\Gonza\Downloads\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\Window.h(10): message : vea la declaración de 'Window'
+C:\Users\Gonza\Downloads\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\BaseGame.h(18,21): warning C4251: 'BaseGame::gameRender': class 'Renderer' necesita tener una interfaz DLL para que la utilicen los clientes de class 'BaseGame'
+  Generando código...
+C:\Users\Gonza\Downloads\Graficos-I-GameEngine\Graficos I (2019)\GameEngine\Renderer.h(14): message : vea la declaración de 'Renderer'
+     Creando biblioteca C:\Users\Gonza\Downloads\Graficos-I-GameEngine\Graficos I (2019)\Debug\Juego.lib y objeto C:\Users\Gonza\Downloads\Graficos-I-GameEngine\Graficos I (2019)\Debug\Juego.exp
+  Juego.vcxproj -> C:\Users\Gonza\Downloads\Graficos-I-GameEngine\Graficos I (2019)\Debug\Juego.exe
