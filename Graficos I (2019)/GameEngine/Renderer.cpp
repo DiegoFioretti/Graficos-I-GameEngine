@@ -53,7 +53,6 @@ const GLchar* fragmentSource = R"glsl(
 
 Renderer::Renderer()
 {
-	
 	// Initialize GLEW
 	glewExperimental = GL_TRUE;
 	glewInit();
@@ -71,107 +70,6 @@ Renderer::Renderer()
 
 	Entity simple;
 	gameEntities[0] = simple;
-	/*
-	// Create Vertex Array Object
-	GLuint vao;
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-
-	// Create a Vertex Buffer Object and copy the vertex data to it
-	GLuint vbo;
-	glGenBuffers(1, &vbo);
-
-	GLfloat vertices[] = {
-		//  Position            Color             Texcoords
-			-0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, // Top-left
-			 0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // Top-right
-			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, // Bottom-right
-			-0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f  // Bottom-left
-	};
-
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-	// Create an element array
-	GLuint ebo;
-	glGenBuffers(1, &ebo);
-
-	GLuint elements[] = {
-		0, 1, 2,
-		2, 3, 0
-	};
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
-//-------------------------------------------SHADERS-------------------------------------------------------
-	// Create and compile the vertex shader
-	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexSource, NULL);
-	glCompileShader(vertexShader);
-
-	// Create and compile the fragment shader
-	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
-	glCompileShader(fragmentShader);
-
-	// Link the vertex and fragment shader into a shader program
-	GLuint shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glBindFragDataLocation(shaderProgram, 0, "outColor");
-	glLinkProgram(shaderProgram);
-	glUseProgram(shaderProgram);
-//-------------------------------------------TEXTURES-------------------------------------------------------
-	unsigned int texture;
-	glGenTextures(1, &texture);
-	glBindTexture(GL_TEXTURE_2D, texture);
-	
-	// set the texture wrapping/filtering options (on the currently bound texture object)
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	
-	// load and generate the texture
-	int width, height, nrChannels;
-	unsigned char* data = stbi_load("../texture.png", &width, &height, &nrChannels, 0);
-	if (data)
-	{
-		std::cout << "Width "<< width << std::endl;
-		std::cout << "Height "<< height<< std::endl;
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-		glGenerateMipmap(GL_TEXTURE_2D);
-	}
-	else
-	{
-		std::cout << "Failed to load texture" << std::endl;
-	}
-	stbi_image_free(data);
-	
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-	glEnableVertexAttribArray(2);
-
-	glBindTexture(GL_TEXTURE_2D, texture);
-	glBindVertexArray(vao);
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-//-------------------------------------------TRANSFORM-------------------------------------------------------
-	// Specify the layout of the vertex data
-	GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
-	glEnableVertexAttribArray(posAttrib);
-	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), 0);
-
-	GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
-	glEnableVertexAttribArray(colAttrib);
-	glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)));
-
-	GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
-	glEnableVertexAttribArray(texAttrib);
-	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), (void*)(5 * sizeof(GLfloat)));
-
-
-	uniTrans = glGetUniformLocation(shaderProgram, "trans");
-	
-	*/
 }
 
 
@@ -203,56 +101,23 @@ void Renderer::newShape() {
 	glLinkProgram(shaderProgram);
 	glUseProgram(shaderProgram);
 
-	//-------------------------------------------TEXTURES-------------------------------------------------------
-	/*unsigned int texture;
-	glGenTextures(1, &texture);
-	glBindTexture(GL_TEXTURE_2D, texture);
-
-	// set the texture wrapping/filtering options (on the currently bound texture object)
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	// load and generate the texture
-	int width, height, nrChannels;
-	unsigned char* data = stbi_load("../texture.png", &width, &height, &nrChannels, 0);
-	if (data)
-	{
-		std::cout << "Width " << width << std::endl;
-		std::cout << "Height " << height << std::endl;
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-		glGenerateMipmap(GL_TEXTURE_2D);
-	}
-	else
-	{
-		std::cout << "Failed to load texture" << std::endl;
-	}
-	stbi_image_free(data);
-
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-	glEnableVertexAttribArray(2);
-
-	glBindTexture(GL_TEXTURE_2D, texture);
-	glBindVertexArray(vao);
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);*/
 	//-------------------------------------------TRANSFORM-------------------------------------------------------
-		// Specify the layout of the vertex data
+	// Specify the layout of the vertex data
 	GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
 	glEnableVertexAttribArray(posAttrib);
-	glVertexAttribPointer(posAttrib, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), 0);
+	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), 0);
 
 	GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
 	glEnableVertexAttribArray(colAttrib);
-	glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
+	glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)));
 
 	GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
 	glEnableVertexAttribArray(texAttrib);
-	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(6 * sizeof(GLfloat)));
+	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), (void*)(5 * sizeof(GLfloat)));
 	
-
 	uniTrans = glGetUniformLocation(shaderProgram, "trans");
-
+	
+	//-------------------------------------------TEXTURES-------------------------------------------------------
 	unsigned int texture;
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
