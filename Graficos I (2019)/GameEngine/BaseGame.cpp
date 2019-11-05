@@ -16,20 +16,26 @@ BaseGame::~BaseGame()
 
 int BaseGame::ScreenInit() 
 {
-	gameRender.newShape();
 	//Loop que continua hasta no cerrar la ventana
 	while (!glfwWindowShouldClose(gameWindow.window()))
 	{	
+		update();
 		//hace refresh de la ventana
 		gameRender.WindowRefresh(gameWindow.window());
 		//Si estas en la ventana toma los imputs
 		KeyCallback(gameWindow.window());
+		
 	}
 	
 	//Esta funcion destruye todas las ventanas y libera los recursos utilizados y deja la libreria en un estado no inicializado 
 	glfwTerminate();
 	return 0;
 	
+}
+
+void BaseGame::addNewQuad() 
+{
+	gameRender.addEntity();
 }
 
 void BaseGame::KeyCallback(GLFWwindow* window) {

@@ -34,7 +34,7 @@ public:
 	float sizeZ = 0.5f;
 	Renderer();
 	~Renderer();
-	void newShape();
+	void addEntity();
 	void WindowRefresh(GLFWwindow* window);
 };
 

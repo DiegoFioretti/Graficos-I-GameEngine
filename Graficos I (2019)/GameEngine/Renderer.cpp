@@ -58,18 +58,18 @@ Renderer::Renderer()
 	glewInit();
 	// Create Vertex Array Object
 	glGenVertexArrays(1, &vao);
+	//binds the vertex array object
 	glBindVertexArray(vao);
 
 	// Create a Vertex Buffer Object and copy the vertex data to it
 	glGenBuffers(1, &vbo);
+	//Specifies the target to which the buffer object is bound
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 
 	// Create an element array
 	glGenBuffers(1, &ebo);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
 
-	Entity simple;
-	gameEntities[0] = simple;
 }
 
 
@@ -78,7 +78,11 @@ Renderer::~Renderer()
 
 }
 
-void Renderer::newShape() {
+void Renderer::addEntity() {
+	
+	Entity simple;
+	gameEntities[0] = simple;
+
 	glBufferData(GL_ARRAY_BUFFER, sizeof(gameEntities[0].getVertices()), &gameEntities[0].getVertices(), GL_STATIC_DRAW);
 
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(gameEntities[0].getElements()), &gameEntities[0].getElements(), GL_STATIC_DRAW);
@@ -105,15 +109,15 @@ void Renderer::newShape() {
 	// Specify the layout of the vertex data
 	GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
 	glEnableVertexAttribArray(posAttrib);
-	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), 0);
+	glVertexAttribPointer(posAttrib, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), 0);
 
 	GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
 	glEnableVertexAttribArray(colAttrib);
-	glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)));
+	glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
 
 	GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
 	glEnableVertexAttribArray(texAttrib);
-	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 7 * sizeof(GLfloat), (void*)(5 * sizeof(GLfloat)));
+	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(6 * sizeof(GLfloat)));
 	
 	uniTrans = glGetUniformLocation(shaderProgram, "trans");
 	

@@ -16,10 +16,13 @@ private:
 	Input gameInput;
 	Window gameWindow;
 	Renderer gameRender;
+protected:
+	virtual void update() = 0;
 public:
 	BaseGame();
 	int ScreenInit();
 	~BaseGame();
 	void KeyCallback(GLFWwindow* window);
+	void addNewQuad();
 };
 #endif
