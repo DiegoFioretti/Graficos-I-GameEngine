@@ -161,7 +161,6 @@ void Renderer::WindowRefresh(GLFWwindow* window)
 	glClearColor(135.f/255.f, 135.f / 255.f, 135.f / 255.f, 1);
 	//Limpia el buffer con el color creado
 	glClear(GL_COLOR_BUFFER_BIT);
-
 	//Reneriza las primitivas(Que primitivas renderizar, especifica el indice inicial, el numero de indices para ser renderizados )
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	glm::mat4 trans = glm::mat4(1.0f);

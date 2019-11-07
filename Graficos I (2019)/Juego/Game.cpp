@@ -11,5 +11,8 @@ Game::~Game()
 
 void Game::update() 
 {
-	printf("Puto el que lee");
+	if (keyPress('w'))
+	{
+		printf("Holas,");
+	}
 }
