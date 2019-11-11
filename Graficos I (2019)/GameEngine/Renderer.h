@@ -21,21 +21,19 @@ private:
 	GLint uniTrans;
 	GLint uniProj;
 	GLint uniView;
-	Entity gameEntities[MAXENTITIES];
+	int nEntity;
+	array <Entity, MAXENTITIES> _gameEntities;
 public:
-	float rotateX = 0.0f;
-	float rotateY = 0.0f;
-	float rotateZ = 0.0f;
-	float posicionX = 0.0f;
-	float posicionY = 0.0f;
-	float posicionZ = 0.0f;
-	float sizeX = 0.5f;
-	float sizeY = 0.5f;
-	float sizeZ = 0.5f;
 	Renderer();
 	~Renderer();
 	void addEntity();
+	array<Entity, MAXENTITIES> getGameEntities();
+	void changeScale(float amount);
 	void WindowRefresh(GLFWwindow* window);
+
+	float entityPosMod(bool& willChange, char& axis, int& entity, float& amount);
+	float entityScaleMod(bool& willChange, char& axis, int& entity, float& amount);
+	float entityRotMod(bool& willChange, char& axis, int& entity, float& amount);
 };
 
 #endif RENDERER_H
