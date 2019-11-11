@@ -11,8 +11,18 @@ Game::~Game()
 
 void Game::update() 
 {
-	if (keyPress('w'))
+	
+	if (keyPress('q'))
+	{
+		printf("chau,");
+	}
+	if (keyPressOnce('w'))
+	{
+		printf("atun,");
+	}
+	if (keyPressOnce('e'))
 	{
 		printf("Holas,");
 	}
+	
 }

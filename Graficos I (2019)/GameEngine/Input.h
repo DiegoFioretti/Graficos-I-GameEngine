@@ -11,9 +11,11 @@ private:
 public:
 	Input();
 	~Input();
-	void keyCall(GLFWwindow* window);
+	char keyCall(GLFWwindow* window);
+	char KeyCallOnce(GLFWwindow* window);
 	char key;
-
+	bool keyReleased [30];
+	bool a = true;
 };
 
 #endif INPUT_H

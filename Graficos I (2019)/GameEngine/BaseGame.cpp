@@ -20,7 +20,7 @@ int BaseGame::ScreenInit() {
 		//hace refresh de la ventana
 		gameRender.WindowRefresh(gameWindow.window());
 		//Si estas en la ventana toma los imputs
-		gameInput.keyCall(gameWindow.window());
+		
 	}
 	//Esta funcion destruye todas las ventanas y libera los recursos utilizados y deja la libreria en un estado no inicializado 
 	glfwTerminate();
@@ -34,7 +34,16 @@ void BaseGame::addNewQuad()
 }
 
 bool BaseGame::keyPress(char key) {
-	if (key==gameInput.key){
+	if (key== gameInput.keyCall(gameWindow.window())){
+		return true;
+	}
+	return false;
+}
+
+bool BaseGame::keyPressOnce(char key) {
+	//cout << gameInput.KeyCallOnce(gameWindow.window());
+	//cout << key;
+	if (key == gameInput.KeyCallOnce(gameWindow.window())) {
 		return true;
 	}
 	return false;

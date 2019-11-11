@@ -25,6 +25,6 @@ public:
 	int ScreenInit();
 	void addNewQuad();
 	bool keyPress(char key);
-	
+	bool keyPressOnce(char key);
 };
 #endif
