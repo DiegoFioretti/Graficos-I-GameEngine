@@ -141,7 +141,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="container.jpg" />
-    <Image Include="texture.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

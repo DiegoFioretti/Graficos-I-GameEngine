@@ -6,7 +6,7 @@
 #include <GLFW/glfw3.h>
 #include <array>
 
-#define SIZESQV 32
+#define SIZESQV 36
 #define SIZESQE 6
 
 using namespace std;
@@ -18,11 +18,11 @@ private:
 	array <GLuint, SIZESQE> _elements;
 
 	GLfloat _sqVertex[SIZESQV] = {
-		// positions          // colors           // texture coords
-		0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
-		0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
-		-0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
-		-0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // top left 
+		// positions              // colors                 // texture coords
+		0.314f,  0.314f, 0.0f,    1.0f, 1.0f, 1.0f, 1.0f,   0.5f, 0.5f,   // top right
+		0.314f, -0.314f, 0.0f,    1.0f, 1.0f, 1.0f, 1.0f,   0.5f, 0.0f,   // bottom right
+		-0.314f, -0.314f, 0.0f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,   // bottom left
+		-0.314f,  0.314f, 0.0f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.5f    // top left
 	};;
 	GLuint _sqElements[SIZESQE] = {
 		0, 1, 2,

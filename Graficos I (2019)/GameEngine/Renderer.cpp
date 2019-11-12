@@ -15,13 +15,13 @@ using namespace std;
 
 // Shader sources
 const GLchar* vertexSource = R"glsl(
-    #version 330 core
+#version 330 core
 
 layout (location = 0) in vec2 position;
-layout (location = 1) in vec3 color;
+layout (location = 1) in vec4 color;
 layout (location = 2) in vec2 texcoord;
 
-out vec3 Color;
+out vec4 Color;
 out vec2 Texcoord;
 
 uniform mat4 trans;
@@ -38,16 +38,17 @@ const GLchar* fragmentSource = R"glsl(
     #version 330 core
     out vec4 outColor;
 
-	in vec3 Color;
+	in vec4 Color;
 	in vec2 Texcoord;
 
 	uniform sampler2D myTexture;
 
     void main()
     {
-        outColor = texture(myTexture, Texcoord) * vec4(Color, 1.0);
+        outColor = texture(myTexture, Texcoord) * Color;
     }
 )glsl";
+
 
 
 
@@ -56,6 +57,10 @@ Renderer::Renderer()
 	// Initialize GLEW
 	glewExperimental = GL_TRUE;
 	glewInit();
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	// Create Vertex Array Object
 	glGenVertexArrays(1, &vao);
 	//binds the vertex array object
@@ -108,18 +113,18 @@ void Renderer::addEntity() {
 		glUseProgram(shaderProgram);
 
 		//-------------------------------------------TRANSFORM-------------------------------------------------------
-		// Specify the layout of the vertex data
+	/// Specify the layout of the vertex data
 		GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
 		glEnableVertexAttribArray(posAttrib);
-		glVertexAttribPointer(posAttrib, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), 0);
+		glVertexAttribPointer(posAttrib, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), 0);
 
 		GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
 		glEnableVertexAttribArray(colAttrib);
-		glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
+		glVertexAttribPointer(colAttrib, 4, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
 
 		GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
 		glEnableVertexAttribArray(texAttrib);
-		glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(6 * sizeof(GLfloat)));
+		glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (void*)(7 * sizeof(GLfloat)));
 
 		uniTrans = glGetUniformLocation(shaderProgram, "trans");
 
@@ -136,10 +141,10 @@ void Renderer::addEntity() {
 		int width, height, nrChannels;
 		stbi_set_flip_vertically_on_load(true);
 
-		unsigned char* data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
+		unsigned char* data = stbi_load("../Juego/pkm.png", &width, &height, &nrChannels, 0);
 		if (data)
 		{
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 			glGenerateMipmap(GL_TEXTURE_2D);
 		}
 		else
