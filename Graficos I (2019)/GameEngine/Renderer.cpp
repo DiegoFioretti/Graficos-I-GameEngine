@@ -70,6 +70,7 @@ Renderer::Renderer()
 	glGenBuffers(1, &ebo);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
 
+	nEntity = 0;
 }
 
 
@@ -79,74 +80,91 @@ Renderer::~Renderer()
 }
 
 void Renderer::addEntity() {
-	
-	Entity simple;
-	gameEntities[0] = simple;
-
-	glBufferData(GL_ARRAY_BUFFER, sizeof(gameEntities[0].getVertices()), &gameEntities[0].getVertices(), GL_STATIC_DRAW);
-
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(gameEntities[0].getElements()), &gameEntities[0].getElements(), GL_STATIC_DRAW);
-
-	// Create and compile the vertex shader
-	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexSource, NULL);
-	glCompileShader(vertexShader);
-
-	// Create and compile the fragment shader
-	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
-	glCompileShader(fragmentShader);
-
-	// Link the vertex and fragment shader into a shader program
-	GLuint shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glBindFragDataLocation(shaderProgram, 0, "outColor");
-	glLinkProgram(shaderProgram);
-	glUseProgram(shaderProgram);
-
-	//-------------------------------------------TRANSFORM-------------------------------------------------------
-	// Specify the layout of the vertex data
-	GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
-	glEnableVertexAttribArray(posAttrib);
-	glVertexAttribPointer(posAttrib, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), 0);
-
-	GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
-	glEnableVertexAttribArray(colAttrib);
-	glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
-
-	GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
-	glEnableVertexAttribArray(texAttrib);
-	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(6 * sizeof(GLfloat)));
-	
-	uniTrans = glGetUniformLocation(shaderProgram, "trans");
-	
-	//-------------------------------------------TEXTURES-------------------------------------------------------
-	unsigned int texture;
-	glGenTextures(1, &texture);
-	glBindTexture(GL_TEXTURE_2D, texture);
-	// set the texture wrapping/filtering options (on the currently bound texture object)
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	// load and generate the texture
-	int width, height, nrChannels;
-	stbi_set_flip_vertically_on_load(true);
-
-	unsigned char* data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
-	if (data)
+	if (nEntity < MAXENTITIES)
 	{
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-		glGenerateMipmap(GL_TEXTURE_2D);
+		Entity simple;
+		_gameEntities[nEntity] = simple;
+
+		glBufferData(GL_ARRAY_BUFFER, sizeof(_gameEntities[nEntity].getVertices()), &_gameEntities[nEntity].getVertices(), GL_STATIC_DRAW);
+
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_gameEntities[nEntity].getElements()), &_gameEntities[nEntity].getElements(), GL_STATIC_DRAW);
+
+		// Create and compile the vertex shader
+		GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+		glShaderSource(vertexShader, 1, &vertexSource, NULL);
+		glCompileShader(vertexShader);
+
+		// Create and compile the fragment shader
+		GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+		glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
+		glCompileShader(fragmentShader);
+
+		// Link the vertex and fragment shader into a shader program
+		GLuint shaderProgram = glCreateProgram();
+		glAttachShader(shaderProgram, vertexShader);
+		glAttachShader(shaderProgram, fragmentShader);
+		glBindFragDataLocation(shaderProgram, 0, "outColor");
+		glLinkProgram(shaderProgram);
+		glUseProgram(shaderProgram);
+
+		//-------------------------------------------TRANSFORM-------------------------------------------------------
+		// Specify the layout of the vertex data
+		GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
+		glEnableVertexAttribArray(posAttrib);
+		glVertexAttribPointer(posAttrib, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), 0);
+
+		GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
+		glEnableVertexAttribArray(colAttrib);
+		glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
+
+		GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
+		glEnableVertexAttribArray(texAttrib);
+		glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(6 * sizeof(GLfloat)));
+
+		uniTrans = glGetUniformLocation(shaderProgram, "trans");
+
+		//-------------------------------------------TEXTURES-------------------------------------------------------
+		unsigned int texture;
+		glGenTextures(1, &texture);
+		glBindTexture(GL_TEXTURE_2D, texture);
+		// set the texture wrapping/filtering options (on the currently bound texture object)
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		// load and generate the texture
+		int width, height, nrChannels;
+		stbi_set_flip_vertically_on_load(true);
+
+		unsigned char* data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
+		if (data)
+		{
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+			glGenerateMipmap(GL_TEXTURE_2D);
+		}
+		else
+		{
+			std::cout << "Failed to load texture" << std::endl;
+		}
+		stbi_image_free(data);
+
+		glBindTexture(GL_TEXTURE_2D, texture);
+
+		nEntity++;
 	}
 	else
 	{
-		std::cout << "Failed to load texture" << std::endl;
+		cout << "ERROR: MAX AMOUNT OF ENTITIES REACHED" << endl;
 	}
-	stbi_image_free(data);
+}
 
-	glBindTexture(GL_TEXTURE_2D, texture);
+array<Entity, MAXENTITIES> Renderer::getGameEntities()
+{
+	return _gameEntities;
+}
+
+void Renderer::changeScale(float amount) {
+	_gameEntities[0].SetScaleY(amount);
 }
 
 void Renderer::WindowRefresh(GLFWwindow* window)
@@ -164,20 +182,144 @@ void Renderer::WindowRefresh(GLFWwindow* window)
 	//Reneriza las primitivas(Que primitivas renderizar, especifica el indice inicial, el numero de indices para ser renderizados )
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	glm::mat4 trans = glm::mat4(1.0f);
-	//posicion
-	trans = glm::translate(trans, glm::vec3(posicionX, posicionY, posicionZ));
-	//rotacion
-	trans = glm::rotate(trans, glm::radians(rotateZ), glm::vec3(0.0f, 0.0f, 1.0f));
-	trans = glm::rotate(trans, glm::radians(rotateY), glm::vec3(0.0f, 1.0f, 0.0f));
-	trans = glm::rotate(trans, glm::radians(rotateX), glm::vec3(1.0f, 0.0f, 0.0f));
-	//tamano
-	trans = glm::scale(trans, glm::vec3(sizeX, sizeY, sizeZ));
 
-	glm::vec4 result = trans * glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
-	glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(trans));
+	if (nEntity > 0)
+	{
+		for (size_t i = 0; i < nEntity; i++)
+		{		//posicion
+			trans = glm::translate(trans, glm::vec3(_gameEntities[i].GetPositionX(), _gameEntities[i].GetPositionY(), _gameEntities[i].GetPositionZ()));
+			//rotacion
+			trans = glm::rotate(trans, glm::radians(_gameEntities[i].GetRotationX()), glm::vec3(0.0f, 1.0f, 0.0f));
+			trans = glm::rotate(trans, glm::radians(_gameEntities[i].GetRotationY()), glm::vec3(0.0f, 1.0f, 0.0f));
+			trans = glm::rotate(trans, glm::radians(_gameEntities[i].GetRotationZ()), glm::vec3(1.0f, 0.0f, 0.0f));
+			//tamano
+			trans = glm::scale(trans, glm::vec3(_gameEntities[i].GetScaleX(), _gameEntities[i].GetScaleY(), _gameEntities[i].GetScaleZ()));
+
+			glm::vec4 result = trans * glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
+			glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(trans));
+		}
+	}
 	
 	//Invierte el buffer frontal y el de atras
 	glfwSwapBuffers(window);
 	//Esta funcion procesa solo los eventos que ya estan en la cola, el procesamiento de eventos hace que se invoquen las devoluciones de llamada de la ventana
 	glfwPollEvents();
+}
+
+float Renderer::entityPosMod(bool& willChange, char& axis, int& entity, float& amount)
+{
+	if (willChange)
+	{
+		switch (axis)
+		{
+		case 'x':
+			_gameEntities[entity].SetPositionX(amount);
+			break;
+		case 'y':
+			_gameEntities[entity].SetPositionY(amount);
+			break;
+		case 'z':
+			_gameEntities[entity].SetPositionZ(amount);
+			break;
+		default:
+			cout << "Error: Non-existant axis" << endl;
+			break;
+		}
+	}
+	else
+	{
+		switch (axis)
+		{
+		case 'x':
+			return _gameEntities[entity].GetPositionX();
+			break;
+		case 'y':
+			return _gameEntities[entity].GetPositionY();
+			break;
+		case 'z':
+			return _gameEntities[entity].GetPositionZ();
+			break;
+		default:
+			cout << "Error: Non-existant axis" << endl;
+			break;
+		}
+	}
+}
+float Renderer::entityScaleMod(bool& willChange, char& axis, int& entity, float& amount)
+{
+	if (willChange)
+	{
+		switch (axis)
+		{
+		case 'x':
+			_gameEntities[entity].SetScaleX(amount);
+			break;
+		case 'y':
+			_gameEntities[entity].SetScaleY(amount);
+			break;
+		case 'z':
+			_gameEntities[entity].SetScaleZ(amount);
+			break;
+		default:
+			cout << "Error: Non-existant axis" << endl;
+			break;
+		}
+	}
+	else
+	{
+		switch (axis)
+		{
+		case 'x':
+			return _gameEntities[entity].GetScaleX();
+			break;
+		case 'y':
+			return _gameEntities[entity].GetScaleY();
+			break;
+		case 'z':
+			return _gameEntities[entity].GetScaleZ();
+			break;
+		default:
+			cout << "Error: Non-existant axis" << endl;
+			break;
+		}
+	}
+}
+float Renderer::entityRotMod(bool& willChange, char& axis, int& entity, float& amount)
+{
+	if (willChange)
+	{
+		switch (axis)
+		{
+		case 'x':
+			_gameEntities[entity].SetRotationX(amount);
+			break;
+		case 'y':
+			_gameEntities[entity].SetRotationY(amount);
+			break;
+		case 'z':
+			_gameEntities[entity].SetRotationZ(amount);
+			break;
+		default:
+			cout << "Error: Non-existant axis" << endl;
+			break;
+		}
+	}
+	else
+	{
+		switch (axis)
+		{
+		case 'x':
+			return _gameEntities[entity].GetRotationX();
+			break;
+		case 'y':
+			return _gameEntities[entity].GetRotationY();
+			break;
+		case 'z':
+			return _gameEntities[entity].GetRotationZ();
+			break;
+		default:
+			cout << "Error: Non-existant axis" << endl;
+			break;
+		}
+	}
 }

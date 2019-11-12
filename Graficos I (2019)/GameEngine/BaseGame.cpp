@@ -48,3 +48,16 @@ bool BaseGame::keyPressOnce(char key) {
 	}
 	return false;
 }
+
+float BaseGame::entityPos(bool willChange, char axis, int entity, float amount)
+{
+	return gameRender.entityPosMod(willChange, axis, entity, amount);
+}
+float BaseGame::entityScale(bool willChange, char axis, int entity, float amount)
+{
+	return gameRender.entityScaleMod(willChange, axis, entity, amount);
+}
+float BaseGame::entityRot(bool willChange, char axis, int entity, float amount)
+{
+	return gameRender.entityRotMod(willChange, axis, entity, amount);
+}

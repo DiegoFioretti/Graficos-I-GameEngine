@@ -26,5 +26,8 @@ public:
 	void addNewQuad();
 	bool keyPress(char key);
 	bool keyPressOnce(char key);
+	float entityPos(bool willChange,char axis, int entity, float amount);
+	float entityScale(bool willChange, char axis, int entity, float amount);
+	float entityRot(bool willChange, char axis, int entity, float amount);
 };
 #endif

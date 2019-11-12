@@ -22,7 +22,8 @@ void Game::update()
 	}
 	if (keyPressOnce('e'))
 	{
-		printf("Holas,");
+		entityPos(true, 'z', 0, 0.001f);
+		cout << entityPos(false, 'z', 0, 0.0f);
 	}
 	
 }
