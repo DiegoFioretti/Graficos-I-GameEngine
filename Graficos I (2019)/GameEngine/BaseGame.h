@@ -24,10 +24,10 @@ public:
 	~BaseGame();
 	int ScreenInit();
 	void addNewQuad();
-	bool keyPress(char key);
-	bool keyPressOnce(char key);
+	bool keyPress(char key,int num);
 	float entityPos(bool willChange,char axis, int entity, float amount);
 	float entityScale(bool willChange, char axis, int entity, float amount);
 	float entityRot(bool willChange, char axis, int entity, float amount);
+	void coutSprite(const char* image,int u, int v, int width, int high,int space,int time);
 };
 #endif

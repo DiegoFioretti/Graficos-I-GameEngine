@@ -141,7 +141,7 @@ void Renderer::addEntity() {
 		int width, height, nrChannels;
 		stbi_set_flip_vertically_on_load(true);
 
-		unsigned char* data = stbi_load("../Juego/pkm.png", &width, &height, &nrChannels, 0);
+		unsigned char* data = stbi_load(image, &width, &height, &nrChannels, 0);
 		if (data)
 		{
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
@@ -162,6 +162,8 @@ void Renderer::addEntity() {
 		cout << "ERROR: MAX AMOUNT OF ENTITIES REACHED" << endl;
 	}
 }
+
+
 
 array<Entity, MAXENTITIES> Renderer::getGameEntities()
 {

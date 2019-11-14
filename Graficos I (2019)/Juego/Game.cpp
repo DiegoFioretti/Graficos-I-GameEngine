@@ -11,19 +11,20 @@ Game::~Game()
 
 void Game::update() 
 {
-	
-	if (keyPress('q'))
+	//keyPress(letra,0 constante y 1 una vez)
+	if (keyPress('q',1))
 	{
 		printf("chau,");
 	}
-	if (keyPressOnce('w'))
+	if (keyPress('w',1))
 	{
-		printf("atun,");
+		printf("alo,");
 	}
-	if (keyPressOnce('e'))
+	coutSprite(".. / Juego / pkm.png",14, 10, 34, 52, 30, 1);
+	/*if (keyPressOnce('e'))
 	{
 		entityPos(true, 'z', 0, 0.001f);
 		cout << entityPos(false, 'z', 0, 0.0f);
-	}
+	}*/
 	
 }

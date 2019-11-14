@@ -33,21 +33,10 @@ void BaseGame::addNewQuad()
 	gameRender.addEntity();
 }
 
-bool BaseGame::keyPress(char key) {
-	if (key== gameInput.keyCall(gameWindow.window())){
-		return true;
-	}
-	return false;
+bool BaseGame::keyPress(char key, int num) {
+	return gameInput.keyCall(gameWindow.window(), key, num);
 }
 
-bool BaseGame::keyPressOnce(char key) {
-	//cout << gameInput.KeyCallOnce(gameWindow.window());
-	//cout << key;
-	if (key == gameInput.KeyCallOnce(gameWindow.window())) {
-		return true;
-	}
-	return false;
-}
 
 float BaseGame::entityPos(bool willChange, char axis, int entity, float amount)
 {
@@ -60,4 +49,8 @@ float BaseGame::entityScale(bool willChange, char axis, int entity, float amount
 float BaseGame::entityRot(bool willChange, char axis, int entity, float amount)
 {
 	return gameRender.entityRotMod(willChange, axis, entity, amount);
+}
+
+void BaseGame::coutSprite(const char* image, int u, int v, int width, int high, int space, int time) {
+	gameRender.image = image;
 }

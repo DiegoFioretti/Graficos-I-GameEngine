@@ -7,15 +7,13 @@
 class Input
 {
 private:
-
+	double timer = 0;
 public:
 	Input();
 	~Input();
-	char keyCall(GLFWwindow* window);
-	char KeyCallOnce(GLFWwindow* window);
-	char key;
+	bool keyCall(GLFWwindow* window, int key, int num);
 	bool keyReleased [30];
-	bool a = true;
+	bool keyPress();
 };
 
 #endif INPUT_H

@@ -34,6 +34,8 @@ public:
 	float entityPosMod(bool& willChange, char& axis, int& entity, float& amount);
 	float entityScaleMod(bool& willChange, char& axis, int& entity, float& amount);
 	float entityRotMod(bool& willChange, char& axis, int& entity, float& amount);
+
+	const char* image= "../Juego/pkm.png";
 };
 
 #endif RENDERER_H
