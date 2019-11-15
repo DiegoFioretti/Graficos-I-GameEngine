@@ -29,5 +29,6 @@ public:
 	float entityScale(bool willChange, char axis, int entity, float amount);
 	float entityRot(bool willChange, char axis, int entity, float amount);
 	void coutSprite(const char* image,int u, int v, int width, int high,int space,int time);
+	void test();
 };
 #endif

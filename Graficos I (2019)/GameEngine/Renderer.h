@@ -23,6 +23,12 @@ private:
 	GLint uniView;
 	int nEntity;
 	array <Entity, MAXENTITIES> _gameEntities;
+	Entity entityGame;
+	unsigned int texture;
+	const char* actImage;
+	float arrShape[36];
+	GLuint shaderProgram;
+	Window* win;
 public:
 	Renderer();
 	~Renderer();
@@ -35,7 +41,12 @@ public:
 	float entityScaleMod(bool& willChange, char& axis, int& entity, float& amount);
 	float entityRotMod(bool& willChange, char& axis, int& entity, float& amount);
 
-	const char* image= "../Juego/pkm.png";
+	//const char* image= "../Juego/pkm.png";
+
+	void newSrpiteSheet(const char* image);
+	void cutSrpiteSheet();
+
+	
 };
 
 #endif RENDERER_H

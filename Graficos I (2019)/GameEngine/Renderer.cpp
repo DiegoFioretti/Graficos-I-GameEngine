@@ -91,8 +91,8 @@ void Renderer::addEntity() {
 		_gameEntities[nEntity] = simple;
 
 		glBufferData(GL_ARRAY_BUFFER, sizeof(_gameEntities[nEntity].getVertices()), &_gameEntities[nEntity].getVertices(), GL_STATIC_DRAW);
-
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_gameEntities[nEntity].getElements()), &_gameEntities[nEntity].getElements(), GL_STATIC_DRAW);
+
 
 		// Create and compile the vertex shader
 		GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -105,7 +105,7 @@ void Renderer::addEntity() {
 		glCompileShader(fragmentShader);
 
 		// Link the vertex and fragment shader into a shader program
-		GLuint shaderProgram = glCreateProgram();
+		shaderProgram = glCreateProgram();
 		glAttachShader(shaderProgram, vertexShader);
 		glAttachShader(shaderProgram, fragmentShader);
 		glBindFragDataLocation(shaderProgram, 0, "outColor");
@@ -129,7 +129,7 @@ void Renderer::addEntity() {
 		uniTrans = glGetUniformLocation(shaderProgram, "trans");
 
 		//-------------------------------------------TEXTURES-------------------------------------------------------
-		unsigned int texture;
+		
 		glGenTextures(1, &texture);
 		glBindTexture(GL_TEXTURE_2D, texture);
 		// set the texture wrapping/filtering options (on the currently bound texture object)
@@ -141,19 +141,7 @@ void Renderer::addEntity() {
 		int width, height, nrChannels;
 		stbi_set_flip_vertically_on_load(true);
 
-		unsigned char* data = stbi_load(image, &width, &height, &nrChannels, 0);
-		if (data)
-		{
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-			glGenerateMipmap(GL_TEXTURE_2D);
-		}
-		else
-		{
-			std::cout << "Failed to load texture" << std::endl;
-		}
-		stbi_image_free(data);
-
-		glBindTexture(GL_TEXTURE_2D, texture);
+		
 
 		nEntity++;
 	}
@@ -163,6 +151,39 @@ void Renderer::addEntity() {
 	}
 }
 
+void Renderer::newSrpiteSheet(const char* image) {
+	if (actImage != image)
+	{
+		actImage = image;
+		int width, height, nrChannels;
+		stbi_set_flip_vertically_on_load(true);
+
+		unsigned char* data = stbi_load(image, &width, &height, &nrChannels, 0);
+		if (data)
+		{
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+			
+			glGenerateMipmap(GL_TEXTURE_2D);
+			cout << width << "," << height << endl;
+			
+		}
+		else{
+			std::cout << "Failed to load texture" << std::endl;
+		}
+		stbi_image_free(data);
+
+		glBindTexture(GL_TEXTURE_2D, texture);
+	}
+}
+void Renderer::cutSrpiteSheet() {
+	entityGame.test();
+	glBufferData(GL_ARRAY_BUFFER, sizeof(_gameEntities[nEntity].getVertices()), &_gameEntities[nEntity].getVertices(), GL_STATIC_DRAW);
+	for (int i = 0; i < 8; i++)
+	{
+		cout << _gameEntities[i].getVertices() << ",";
+	}
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_gameEntities[nEntity].getElements()), &_gameEntities[nEntity].getElements(), GL_STATIC_DRAW);
+}
 
 
 array<Entity, MAXENTITIES> Renderer::getGameEntities()
@@ -176,11 +197,6 @@ void Renderer::changeScale(float amount) {
 
 void Renderer::WindowRefresh(GLFWwindow* window)
 {
-	if (chronoAct)
-	{
-		auto t_start = std::chrono::high_resolution_clock::now();
-		chronoAct = false;
-	}
 	
 	//Crea el color con el que luego limpiar el buffer(RGBA)
 	glClearColor(135.f/255.f, 135.f / 255.f, 135.f / 255.f, 1);
@@ -193,7 +209,7 @@ void Renderer::WindowRefresh(GLFWwindow* window)
 	if (nEntity > 0)
 	{
 		for (size_t i = 0; i < nEntity; i++)
-		{		//posicion
+		{	//posicion
 			trans = glm::translate(trans, glm::vec3(_gameEntities[i].GetPositionX(), _gameEntities[i].GetPositionY(), _gameEntities[i].GetPositionZ()));
 			//rotacion
 			trans = glm::rotate(trans, glm::radians(_gameEntities[i].GetRotationX()), glm::vec3(0.0f, 1.0f, 0.0f));

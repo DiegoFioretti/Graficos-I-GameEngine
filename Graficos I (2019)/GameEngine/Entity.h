@@ -45,5 +45,7 @@ public:
 	float GetRotationY();
 	void SetRotationZ(float& z);
 	float GetRotationZ();
+
+	void test();
 };
 #endif

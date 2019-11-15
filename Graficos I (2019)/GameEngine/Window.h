@@ -17,6 +17,5 @@ public:
 	~Window();
 	GLFWwindow* window();
 	void SetScreenWidth(int width);
-	void SetScreenHeight(int height);
-};
+	void SetScreenHeight(int height);};
 #endif  

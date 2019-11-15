@@ -48,3 +48,7 @@ void Entity::SetRotationY(float& y) { _rotationY += y; }
 float Entity::GetRotationY() { return _rotationY; }
 void Entity::SetRotationZ(float& z) { _rotationZ += z; }
 float Entity::GetRotationZ() { return _rotationZ; }
+
+void Entity::test() {
+	shaper.test();
+}

@@ -52,5 +52,24 @@ float BaseGame::entityRot(bool willChange, char axis, int entity, float amount)
 }
 
 void BaseGame::coutSprite(const char* image, int u, int v, int width, int high, int space, int time) {
-	gameRender.image = image;
+	gameRender.newSrpiteSheet(image);
 }
+void BaseGame::test() {
+	gameRender.cutSrpiteSheet();
+}
+
+
+
+
+
+/*
+int arr[5]{0,1,2,3,4};
+test(arr,5);
+
+void BaseGame::test(int a[], int length) {
+	for (int i = 0; i < length; i++)
+	{
+		cout << a[i] << ", ";
+	}
+
+}*/
