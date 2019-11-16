@@ -15,10 +15,12 @@ void Game::update()
 	if (keyPress('q',1))
 	{
 		printf("chau,");
+		entityPos(true, 'y', 0, 0.1f);
 	}
 	if (keyPress('w',1))
 	{
 		printf("alo,");
+		addNewQuad("../Juego/pkm.png");
 	}
 	coutSprite(".. / Juego / pkm.png",14, 10, 34, 52, 30, 1);
 	/*if (keyPressOnce('e'))

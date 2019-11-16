@@ -61,7 +61,7 @@ Renderer::Renderer()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	// Create Vertex Array Object
+	/*// Create Vertex Array Object
 	glGenVertexArrays(1, &vao);
 	//binds the vertex array object
 	glBindVertexArray(vao);
@@ -74,7 +74,7 @@ Renderer::Renderer()
 	// Create an element array
 	glGenBuffers(1, &ebo);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-
+	*/
 	nEntity = 0;
 }
 
@@ -84,15 +84,17 @@ Renderer::~Renderer()
 
 }
 
-void Renderer::addEntity() {
+void Renderer::addEntity(string& textloc) {
 	if (nEntity < MAXENTITIES)
 	{
 		Entity simple;
 		_gameEntities[nEntity] = simple;
 
-		glBufferData(GL_ARRAY_BUFFER, sizeof(_gameEntities[nEntity].getVertices()), &_gameEntities[nEntity].getVertices(), GL_STATIC_DRAW);
+		_gameEntities[nEntity].Initialize(textloc);
 
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_gameEntities[nEntity].getElements()), &_gameEntities[nEntity].getElements(), GL_STATIC_DRAW);
+		//glBufferData(GL_ARRAY_BUFFER, sizeof(_gameEntities[nEntity].getVertices()), &_gameEntities[nEntity].getVertices(), GL_STATIC_DRAW);
+
+		//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_gameEntities[nEntity].getElements()), &_gameEntities[nEntity].getElements(), GL_STATIC_DRAW);
 
 		// Create and compile the vertex shader
 		GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -129,7 +131,7 @@ void Renderer::addEntity() {
 		uniTrans = glGetUniformLocation(shaderProgram, "trans");
 
 		//-------------------------------------------TEXTURES-------------------------------------------------------
-		unsigned int texture;
+		/*unsigned int texture;
 		glGenTextures(1, &texture);
 		glBindTexture(GL_TEXTURE_2D, texture);
 		// set the texture wrapping/filtering options (on the currently bound texture object)
@@ -153,7 +155,7 @@ void Renderer::addEntity() {
 		}
 		stbi_image_free(data);
 
-		glBindTexture(GL_TEXTURE_2D, texture);
+		glBindTexture(GL_TEXTURE_2D, texture);*/
 
 		nEntity++;
 	}
@@ -168,10 +170,6 @@ void Renderer::addEntity() {
 array<Entity, MAXENTITIES> Renderer::getGameEntities()
 {
 	return _gameEntities;
-}
-
-void Renderer::changeScale(float amount) {
-	_gameEntities[0].SetScaleY(amount);
 }
 
 void Renderer::WindowRefresh(GLFWwindow* window)

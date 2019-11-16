@@ -5,11 +5,16 @@
 #include "Shape.h"
 #include "Sprite.h"
 
+#include <GL/glew.h>
+
 class Entity
 {
 private:
 	Shape shaper;
 	Sprite spriter;
+	GLuint _vertexArrayO;
+	GLuint _vertexBufferO;
+	GLuint _elementBufferO;
 	float _positionX;
 	float _positionY;
 	float _positionZ;
@@ -22,8 +27,14 @@ private:
 public:
 	Entity();
 	~Entity();
+
+	void Initialize(string& textloc);
+
 	array<GLfloat,SIZESQV> getVertices();
 	array<GLuint,SIZESQE> getElements();
+	GLuint getVertexArray();
+	GLuint getVertexBuffer();
+	GLuint getElementBuffer();
 
 	void SetPositionX(float& x);
 	float GetPositionX();

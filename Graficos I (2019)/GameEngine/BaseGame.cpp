@@ -28,9 +28,9 @@ int BaseGame::ScreenInit() {
 }
 
 
-void BaseGame::addNewQuad()
+void BaseGame::addNewQuad(string textureLocation)
 {
-	gameRender.addEntity();
+	gameRender.addEntity(textureLocation);
 }
 
 bool BaseGame::keyPress(char key, int num) {

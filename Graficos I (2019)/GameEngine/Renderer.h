@@ -14,9 +14,9 @@ using namespace std;
 class Renderer
 {
 private:
-	GLuint vao;
-	GLuint vbo;
-	GLuint ebo;
+	//GLuint vao;
+	//GLuint vbo;
+	//GLuint ebo;
 	bool chronoAct = true;
 	GLint uniTrans;
 	GLint uniProj;
@@ -26,9 +26,8 @@ private:
 public:
 	Renderer();
 	~Renderer();
-	void addEntity();
+	void addEntity(string& textloc);
 	array<Entity, MAXENTITIES> getGameEntities();
-	void changeScale(float amount);
 	void WindowRefresh(GLFWwindow* window);
 
 	float entityPosMod(bool& willChange, char& axis, int& entity, float& amount);

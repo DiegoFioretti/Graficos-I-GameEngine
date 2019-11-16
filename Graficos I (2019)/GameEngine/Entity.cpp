@@ -18,6 +18,29 @@ Entity::~Entity()
 
 }
 
+void Entity::Initialize(string& textloc) 
+{
+	// Create Vertex Array Object
+	glGenVertexArrays(1, &_vertexArrayO);
+	//binds the vertex array object
+	glBindVertexArray(_vertexArrayO);
+
+	// Create a Vertex Buffer Object and copy the vertex data to it
+	glGenBuffers(1, &_vertexBufferO);
+	//Specifies the target to which the buffer object is bound
+	glBindBuffer(GL_ARRAY_BUFFER, _vertexBufferO);
+
+	// Create an element array
+	glGenBuffers(1, &_elementBufferO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _elementBufferO);
+
+	glBufferData(GL_ARRAY_BUFFER, sizeof(shaper.getSquareVertices()), &shaper.getSquareVertices(), GL_STATIC_DRAW);
+
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(shaper.getSquareElements()), &shaper.getSquareElements(), GL_STATIC_DRAW);
+
+	spriter.setTextureLocation(textloc);
+}
+
 array<GLfloat, SIZESQV> Entity::getVertices()
 {
 	return shaper.getSquareVertices();
@@ -26,6 +49,19 @@ array<GLfloat, SIZESQV> Entity::getVertices()
 array<GLuint, SIZESQE> Entity::getElements()
 {
 	return shaper.getSquareElements();
+}
+
+GLuint Entity::getVertexArray()
+{
+	return _vertexArrayO;
+}
+GLuint Entity::getVertexBuffer()
+{
+	return _vertexBufferO;
+}
+GLuint Entity::getElementBuffer() 
+{
+	return _elementBufferO;
 }
 
 void Entity::SetPositionX(float& x) { _positionX += x; }
