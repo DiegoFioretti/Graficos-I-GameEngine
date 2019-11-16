@@ -84,6 +84,8 @@ Renderer::~Renderer()
 
 }
 
+
+
 void Renderer::addEntity() {
 	if (nEntity < MAXENTITIES)
 	{
@@ -155,16 +157,14 @@ void Renderer::newSrpiteSheet(const char* image) {
 	if (actImage != image)
 	{
 		actImage = image;
-		int width, height, nrChannels;
 		stbi_set_flip_vertically_on_load(true);
 
-		unsigned char* data = stbi_load(image, &width, &height, &nrChannels, 0);
+		unsigned char* data = stbi_load(image, &totalWidth, &totalHeight, &nrChannels, 0);
 		if (data)
 		{
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, totalWidth, totalHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 			
 			glGenerateMipmap(GL_TEXTURE_2D);
-			cout << width << "," << height << endl;
 			
 		}
 		else{
@@ -176,13 +176,20 @@ void Renderer::newSrpiteSheet(const char* image) {
 	}
 }
 void Renderer::cutSrpiteSheet() {
-	entityGame.test();
-	glBufferData(GL_ARRAY_BUFFER, sizeof(_gameEntities[nEntity].getVertices()), &_gameEntities[nEntity].getVertices(), GL_STATIC_DRAW);
-	for (int i = 0; i < 8; i++)
+
+	float* pointer = entityGame.updateSprite();
+	const int *size = entityGame.squareSize();
+	float a[36];
+	for (int i = 0; i < *size; i++)
 	{
-		cout << _gameEntities[i].getVertices() << ",";
+		a[i] = *pointer;
+		pointer++;
 	}
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_gameEntities[nEntity].getElements()), &_gameEntities[nEntity].getElements(), GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(a), a, GL_STATIC_DRAW);
+}
+
+void Renderer::spriteParamts(float u, float v, float width, float high, float cant, float space, float time) {
+	entityGame.spriteParameters( u, v, width, high, cant, space, time, totalWidth, totalHeight);
 }
 
 

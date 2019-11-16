@@ -46,6 +46,9 @@ public:
 	void SetRotationZ(float& z);
 	float GetRotationZ();
 
-	void test();
+	float * updateSprite();
+	int *squareSize();
+	void spriteParameters(float u, float v, float width, float high, float cant, float space, float time, float totalWidth, float totalHeight);
+	float txtVrtx[4][4];
 };
 #endif

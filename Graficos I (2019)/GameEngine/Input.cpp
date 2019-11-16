@@ -1,6 +1,5 @@
 #include "Input.h"
 #include <iostream>
-#include <chrono>
 using namespace std;
 
 Input::Input(){
@@ -13,6 +12,7 @@ Input::Input(){
 Input::~Input() {
 }
 bool Input::keyCall(GLFWwindow* window,int key,int num) {
+
 	//-------------LETRAS---------------------------
 	int a = 0;
 
@@ -634,20 +634,99 @@ bool Input::keyCall(GLFWwindow* window,int key,int num) {
 		keyReleased[a] = true;
 	}
 	a++;
+	//numpad
+
+	if (glfwGetKey(window, GLFW_KEY_8) == GLFW_PRESS) {
+		if (key == '8') {
+			switch (num) {
+			case 0:
+				return true;
+				break;
+			case 1:
+				if (keyReleased[a]) {
+					keyReleased[a] = false;
+					return true;
+				}
+				break;
+
+			default:
+				break;
+			}
+		}
+	}
+	if (glfwGetKey(window, GLFW_KEY_8) == GLFW_RELEASE) {
+		keyReleased[a] = true;
+	}
+	a++;
 	
+	if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS) {
+		if (key == '4') {
+			switch (num) {
+			case 0:
+				return true;
+				break;
+			case 1:
+				if (keyReleased[a]) {
+					keyReleased[a] = false;
+					return true;
+				}
+				break;
+
+			default:
+				break;
+			}
+		}
+	}
+	if (glfwGetKey(window, GLFW_KEY_4) == GLFW_RELEASE) {
+		keyReleased[a] = true;
+	}
+	a++;
+
+	if (glfwGetKey(window, GLFW_KEY_6) == GLFW_PRESS) {
+		if (key == '6') {
+			switch (num) {
+			case 0:
+				return true;
+				break;
+			case 1:
+				if (keyReleased[a]) {
+					keyReleased[a] = false;
+					return true;
+				}
+				break;
+
+			default:
+				break;
+			}
+		}
+	}
+	if (glfwGetKey(window, GLFW_KEY_6) == GLFW_RELEASE) {
+		keyReleased[a] = true;
+	}
+	a++;
+
+	if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS) {
+		if (key == '2') {
+			switch (num) {
+			case 0:
+				return true;
+				break;
+			case 1:
+				if (keyReleased[a]) {
+					keyReleased[a] = false;
+					return true;
+				}
+				break;
+
+			default:
+				break;
+			}
+		}
+	}
+	if (glfwGetKey(window, GLFW_KEY_2) == GLFW_RELEASE) {
+		keyReleased[a] = true;
+	}
+	a++;
 return false;
 }
 
-bool Input::keyPress() {
-	auto start = std::chrono::system_clock::now();
-	auto end = std::chrono::system_clock::now();
-
-	std::chrono::duration<double> elapsed_seconds = end - start;
-		timer += elapsed_seconds.count();
-		if (timer*10000>0.5f)
-		{
-			timer = 0;
-			return true;
-		}
-		return false;
-}

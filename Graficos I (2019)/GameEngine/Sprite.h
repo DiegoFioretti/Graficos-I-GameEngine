@@ -6,7 +6,7 @@ class Sprite
 public:
 	Sprite();
 	~Sprite();
-	
-	void cutSprite(int u, int v, int width, int high, int space);
+	void spriteParameters(float u, float v, float width, float high, float cant, float space, float time, float totalWidth, float totalHeight);
+	float txtVrtx[4][4];
 };
 #endif

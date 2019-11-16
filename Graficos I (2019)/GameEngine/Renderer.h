@@ -30,6 +30,7 @@ private:
 	GLuint shaderProgram;
 	Window* win;
 public:
+	int totalWidth, totalHeight, nrChannels;
 	Renderer();
 	~Renderer();
 	void addEntity();
@@ -45,7 +46,7 @@ public:
 
 	void newSrpiteSheet(const char* image);
 	void cutSrpiteSheet();
-
+	void spriteParamts(float u, float v, float width, float high, float cant, float space, float time);
 	
 };
 

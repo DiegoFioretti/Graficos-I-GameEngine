@@ -28,17 +28,45 @@ array<GLuint, SIZESQE> Shape::getSquareElements()
 	return _elements;
 }
 
-void Shape::test() {
-
-	float coso[36]{
-		0.314f,  0.314f, 0.0f,    1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 1.0f,   // top right
-		0.314f, -0.314f, 0.0f,    1.0f, 1.0f, 1.0f, 1.0f,   1.0f, 0.0f,   // bottom right
-		-0.314f, -0.314f, 0.0f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 0.0f,   // bottom left
-		-0.314f,  0.314f, 0.0f,   1.0f, 1.0f, 1.0f, 1.0f,   0.0f, 1.0f    // top left
-	};
+void Shape::updateSprite() {
+	
 	for (int i = 0; i < 36; i++)
 	{
-		_sqVertex[i] =coso[i];
+		switch (i)
+		{
+		case 7:
+			squareVertx[i] = txtVrtx[frame][0];
+			break;
+		case 8:
+			squareVertx[i] = txtVrtx[frame][2];
+			break;
+		case 16:
+			squareVertx[i] = txtVrtx[frame][0];
+			break;
+		case 17:
+			squareVertx[i] = txtVrtx[frame][3];
+			break;
+		case 25:
+			squareVertx[i] = txtVrtx[frame][1];
+			break;
+		case 26:
+			squareVertx[i] = txtVrtx[frame][3];
+			break;
+		case 34:
+			squareVertx[i] = txtVrtx[frame][1];
+			break;
+		case 35:
+			squareVertx[i] = txtVrtx[frame][2];
+			break;
+		default:
+
+			break;
+		}
 	}
-	
+	frame++;
+	if (frame==4)
+	{
+		frame = 0;
+	}
+
 }

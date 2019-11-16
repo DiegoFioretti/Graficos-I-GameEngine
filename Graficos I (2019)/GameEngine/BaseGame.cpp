@@ -51,8 +51,9 @@ float BaseGame::entityRot(bool willChange, char axis, int entity, float amount)
 	return gameRender.entityRotMod(willChange, axis, entity, amount);
 }
 
-void BaseGame::coutSprite(const char* image, int u, int v, int width, int high, int space, int time) {
+void BaseGame::coutSprite(const char* image, float u, float v, float width, float high, float cant, float space, float time) {
 	gameRender.newSrpiteSheet(image);
+	gameRender.spriteParamts( u, v, width, high,cant, space, time);
 }
 void BaseGame::test() {
 	gameRender.cutSrpiteSheet();

@@ -1,5 +1,7 @@
 #include "Entity.h"
+#include <iostream>
 
+using namespace std;
 Entity::Entity() 
 {
 	_positionX = 0.0f;
@@ -49,6 +51,22 @@ float Entity::GetRotationY() { return _rotationY; }
 void Entity::SetRotationZ(float& z) { _rotationZ += z; }
 float Entity::GetRotationZ() { return _rotationZ; }
 
-void Entity::test() {
-	shaper.test();
+float *Entity::updateSprite() {
+	shaper.updateSprite();
+	return shaper.squareVertx;
 }
+int *Entity::squareSize() {
+	return shaper.squareSize;
+}
+
+void Entity::spriteParameters(float u, float v, float width, float high, float cant, float space, float time, float totalWidth, float totalHeight) {
+	spriter.spriteParameters( u,  v,  width,  high,  cant,  space,  time,  totalWidth,  totalHeight);
+	for (int i = 0; i < cant; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			shaper.txtVrtx[j][i] = spriter.txtVrtx[j][i];
+		}
+	}
+}
+
