@@ -92,43 +92,57 @@ void Renderer::addEntity(string& textloc) {
 
 		_gameEntities[nEntity].Initialize(textloc);
 
-		//glBufferData(GL_ARRAY_BUFFER, sizeof(_gameEntities[nEntity].getVertices()), &_gameEntities[nEntity].getVertices(), GL_STATIC_DRAW);
+		// Create Vertex Array Object
+		glGenVertexArrays(1, &_gameEntities[nEntity].getVertexArray());
+		//binds the vertex array object
+		glBindVertexArray(_gameEntities[nEntity].getVertexArray());
 
-		//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_gameEntities[nEntity].getElements()), &_gameEntities[nEntity].getElements(), GL_STATIC_DRAW);
+		// Create a Vertex Buffer Object and copy the vertex data to it
+		glGenBuffers(1, &_gameEntities[nEntity].getVertexBuffer());
+		//Specifies the target to which the buffer object is bound
+		glBindBuffer(GL_ARRAY_BUFFER, _gameEntities[nEntity].getVertexBuffer());
+
+		// Create an element array
+		glGenBuffers(1, &_gameEntities[nEntity].getElementBuffer());
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _gameEntities[nEntity].getElementBuffer());
+
+		glBufferData(GL_ARRAY_BUFFER, sizeof(_gameEntities[nEntity].getVertices()), &_gameEntities[nEntity].getVertices(), GL_STATIC_DRAW);
+
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_gameEntities[nEntity].getElements()), &_gameEntities[nEntity].getElements(), GL_STATIC_DRAW);
 
 		// Create and compile the vertex shader
-		GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-		glShaderSource(vertexShader, 1, &vertexSource, NULL);
-		glCompileShader(vertexShader);
+		_gameEntities[nEntity].getVertexShader() = glCreateShader(GL_VERTEX_SHADER);
+		glShaderSource(_gameEntities[nEntity].getVertexShader(), 1, &vertexSource, NULL);
+		glCompileShader(_gameEntities[nEntity].getVertexShader());
 
 		// Create and compile the fragment shader
-		GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-		glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
-		glCompileShader(fragmentShader);
+		_gameEntities[nEntity].getFragmentShader() = glCreateShader(GL_FRAGMENT_SHADER);
+		glShaderSource(_gameEntities[nEntity].getFragmentShader(), 1, &fragmentSource, NULL);
+		glCompileShader(_gameEntities[nEntity].getFragmentShader());
 
 		// Link the vertex and fragment shader into a shader program
-		GLuint shaderProgram = glCreateProgram();
-		glAttachShader(shaderProgram, vertexShader);
-		glAttachShader(shaderProgram, fragmentShader);
-		glBindFragDataLocation(shaderProgram, 0, "outColor");
-		glLinkProgram(shaderProgram);
-		glUseProgram(shaderProgram);
+		_gameEntities[nEntity].getShaderProgram()= glCreateProgram();
+		glAttachShader(_gameEntities[nEntity].getShaderProgram(), _gameEntities[nEntity].getVertexShader());
+		glAttachShader(_gameEntities[nEntity].getShaderProgram(), _gameEntities[nEntity].getFragmentShader());
+		glBindFragDataLocation(_gameEntities[nEntity].getShaderProgram(), 0, "outColor");
+		glLinkProgram(_gameEntities[nEntity].getShaderProgram());
+		glUseProgram(_gameEntities[nEntity].getShaderProgram());
 
 		//-------------------------------------------TRANSFORM-------------------------------------------------------
 	/// Specify the layout of the vertex data
-		GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
-		glEnableVertexAttribArray(posAttrib);
-		glVertexAttribPointer(posAttrib, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), 0);
+		_gameEntities[nEntity].getPosAttrib() = glGetAttribLocation(_gameEntities[nEntity].getShaderProgram(), "position");
+		glEnableVertexAttribArray(_gameEntities[nEntity].getPosAttrib());
+		glVertexAttribPointer(_gameEntities[nEntity].getPosAttrib(), 3, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), 0);
 
-		GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
-		glEnableVertexAttribArray(colAttrib);
-		glVertexAttribPointer(colAttrib, 4, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
+		_gameEntities[nEntity].getColAttrib() = glGetAttribLocation(_gameEntities[nEntity].getColAttrib(), "color");
+		glEnableVertexAttribArray(_gameEntities[nEntity].getColAttrib());
+		glVertexAttribPointer(_gameEntities[nEntity].getColAttrib(), 4, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
 
-		GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
-		glEnableVertexAttribArray(texAttrib);
-		glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (void*)(7 * sizeof(GLfloat)));
+		_gameEntities[nEntity].getTexAttrib() = glGetAttribLocation(_gameEntities[nEntity].getShaderProgram(), "texcoord");
+		glEnableVertexAttribArray(_gameEntities[nEntity].getTexAttrib());
+		glVertexAttribPointer(_gameEntities[nEntity].getTexAttrib(), 2, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (void*)(7 * sizeof(GLfloat)));
 
-		uniTrans = glGetUniformLocation(shaderProgram, "trans");
+		_gameEntities[nEntity].getUniTrans() = glGetUniformLocation(_gameEntities[nEntity].getShaderProgram(), "trans");
 
 		//-------------------------------------------TEXTURES-------------------------------------------------------
 		/*unsigned int texture;
@@ -157,6 +171,11 @@ void Renderer::addEntity(string& textloc) {
 
 		glBindTexture(GL_TEXTURE_2D, texture);*/
 
+		glUseProgram(0);
+		glBindVertexArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
 		nEntity++;
 	}
 	else
@@ -184,14 +203,24 @@ void Renderer::WindowRefresh(GLFWwindow* window)
 	glClearColor(135.f/255.f, 135.f / 255.f, 135.f / 255.f, 1);
 	//Limpia el buffer con el color creado
 	glClear(GL_COLOR_BUFFER_BIT);
-	//Reneriza las primitivas(Que primitivas renderizar, especifica el indice inicial, el numero de indices para ser renderizados )
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	
+	glBindVertexArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
 	glm::mat4 trans = glm::mat4(1.0f);
 
 	if (nEntity > 0)
 	{
 		for (size_t i = 0; i < nEntity; i++)
-		{		//posicion
+		{		
+			//binds the vertex array object
+			glBindVertexArray(_gameEntities[i].getVertexArray());
+			//Specifies the target to which the buffer object is bound
+			glBindBuffer(GL_ARRAY_BUFFER, _gameEntities[i].getVertexBuffer());
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _gameEntities[i].getElementBuffer());
+			glUseProgram(_gameEntities[i].getShaderProgram());
+			//posicion
 			trans = glm::translate(trans, glm::vec3(_gameEntities[i].GetPositionX(), _gameEntities[i].GetPositionY(), _gameEntities[i].GetPositionZ()));
 			//rotacion
 			trans = glm::rotate(trans, glm::radians(_gameEntities[i].GetRotationX()), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -201,7 +230,14 @@ void Renderer::WindowRefresh(GLFWwindow* window)
 			trans = glm::scale(trans, glm::vec3(_gameEntities[i].GetScaleX(), _gameEntities[i].GetScaleY(), _gameEntities[i].GetScaleZ()));
 
 			glm::vec4 result = trans * glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
-			glUniformMatrix4fv(uniTrans, 1, GL_FALSE, glm::value_ptr(trans));
+			glUniformMatrix4fv(_gameEntities[i].getUniTrans(), 1, GL_FALSE, glm::value_ptr(trans));
+			//Reneriza las primitivas(Que primitivas renderizar, especifica el indice inicial, el numero de indices para ser renderizados )
+			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+			trans = glm::mat4(1.0f);
+			glUseProgram(0);
+			glBindVertexArray(0);
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 		}
 	}
 	

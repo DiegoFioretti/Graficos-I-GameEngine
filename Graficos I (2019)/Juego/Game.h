@@ -5,6 +5,7 @@
 class BASEGAMELIB Game : public BaseGame
 {
 private:
+	bool doop = true;
 	bool done;
 public:
 	Game();
