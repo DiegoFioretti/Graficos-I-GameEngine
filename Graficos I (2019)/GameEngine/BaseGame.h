@@ -23,7 +23,7 @@ public:
 	BaseGame();
 	~BaseGame();
 	int ScreenInit();
-	void addNewQuad();
+	void addNewQuad(string textureLocation);
 	bool keyPress(char key,int num);
 	float entityPos(bool willChange,char axis, int entity, float amount);
 	float entityScale(bool willChange, char axis, int entity, float amount);

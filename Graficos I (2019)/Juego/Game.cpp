@@ -1,5 +1,6 @@
 #include "Game.h"
 
+
 Game::Game()
 {
 	done = false;
@@ -17,12 +18,13 @@ void Game::update()
 	//keyPress(letra,0 constante y 1 una vez)
 	if (keyPress('q',1))
 	{
-		
+		addNewQuad("../Juego/pkm.png");
 	}
 	if (keyPress('w', 1))
 	{
 		coutSprite("../Juego/pkm.png", 14, 200, 34, 52, 4, 30, 1);
 		test();
+		entityPos(true, 'y', 0, 0.1f);
 	}
 	if (keyPress('a', 1))
 	{

@@ -2,7 +2,6 @@
 
 int main(){
 	Game realgame;
-	realgame.addNewQuad();
 	realgame.ScreenInit();
 	/*while (!realgame.isWindowClosed())
 	{
