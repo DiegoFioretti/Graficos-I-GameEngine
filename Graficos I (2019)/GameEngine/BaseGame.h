@@ -7,6 +7,7 @@
 #include "Input.h"
 #include <Windows.h>
 #include <iostream>
+#include "CollisionManager.h"
 
 #define BASEGAMELIB __declspec(dllexport)
 
@@ -16,7 +17,7 @@ private:
 	Input gameInput;
 	Window gameWindow;
 	Renderer gameRender;
-	
+	CollisionManager gameCollider;
 protected:
 	virtual void update() = 0;
 public:
@@ -25,10 +26,11 @@ public:
 	int ScreenInit();
 	void addNewQuad(string textureLocation);
 	bool keyPress(char key,int num);
+	bool checkCollision(int entA, int entB);
 	float entityPos(bool willChange,char axis, int entity, float amount);
 	float entityScale(bool willChange, char axis, int entity, float amount);
 	float entityRot(bool willChange, char axis, int entity, float amount);
-	void coutSprite(const char* image, float u, float v, float width, float high, float cant, float space, float time);
-	void test();
+	void coutSprite(const char* image, float u, float v, float width, float high, float cant, float space, float time, int entity);
+	void test(int entity);
 };
 #endif

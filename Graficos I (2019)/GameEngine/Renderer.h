@@ -44,8 +44,8 @@ public:
 	//const char* image= "../Juego/pkm.png";
 
 	void newSrpiteSheet(const char* image);
-	void cutSrpiteSheet();
-	void spriteParamts(float u, float v, float width, float high, float cant, float space, float time);
+	void cutSrpiteSheet(int entity);
+	void spriteParamts(float u, float v, float width, float high, float cant, float space, float time, int entity);
 	
 };
 

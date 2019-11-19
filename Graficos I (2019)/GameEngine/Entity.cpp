@@ -105,6 +105,12 @@ int *Entity::squareSize() {
 }
 
 void Entity::spriteParameters(float u, float v, float width, float high, float cant, float space, float time, float totalWidth, float totalHeight) {
+	
+	topLx = _positionX - ((width / 2) / totalWidth);
+	topLy = _positionY + ((high / 2) / totalHeight);
+	bttmRx= _positionX + ((width / 2) / totalWidth);
+	bttmRy= _positionY - ((high / 2) / totalHeight);
+
 	spriter.spriteParameters( u,  v,  width,  high,  cant,  space,  time,  totalWidth,  totalHeight);
 	for (int i = 0; i < cant; i++)
 	{
@@ -114,4 +120,3 @@ void Entity::spriteParameters(float u, float v, float width, float high, float c
 		}
 	}
 }
-

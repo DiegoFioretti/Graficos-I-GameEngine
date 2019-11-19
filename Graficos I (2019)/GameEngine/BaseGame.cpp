@@ -37,6 +37,9 @@ bool BaseGame::keyPress(char key, int num) {
 	return gameInput.keyCall(gameWindow.window(), key, num);
 }
 
+bool BaseGame::checkCollision(int entA, int entB) {
+	return gameCollider.checkcollision(gameRender.getGameEntities()[entA], gameRender.getGameEntities()[entB]);
+}
 
 float BaseGame::entityPos(bool willChange, char axis, int entity, float amount)
 {
@@ -51,12 +54,12 @@ float BaseGame::entityRot(bool willChange, char axis, int entity, float amount)
 	return gameRender.entityRotMod(willChange, axis, entity, amount);
 }
 
-void BaseGame::coutSprite(const char* image, float u, float v, float width, float high, float cant, float space, float time) {
+void BaseGame::coutSprite(const char* image, float u, float v, float width, float high, float cant, float space, float time, int entity) {
 	gameRender.newSrpiteSheet(image);
-	gameRender.spriteParamts( u, v, width, high,cant, space, time);
+	gameRender.spriteParamts( u, v, width, high,cant, space, time, entity);
 }
-void BaseGame::test() {
-	gameRender.cutSrpiteSheet();
+void BaseGame::test(int entity) {
+	gameRender.cutSrpiteSheet(entity);
 }
 
 

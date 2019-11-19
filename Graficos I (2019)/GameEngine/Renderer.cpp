@@ -65,12 +65,12 @@ Renderer::Renderer()
 	glGenVertexArrays(1, &vao);
 	//binds the vertex array object
 	glBindVertexArray(vao);
-
+	
 	// Create a Vertex Buffer Object and copy the vertex data to it
 	glGenBuffers(1, &vbo);
 	//Specifies the target to which the buffer object is bound
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-
+	
 	// Create an element array
 	glGenBuffers(1, &ebo);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
@@ -96,12 +96,12 @@ void Renderer::addEntity(string& textloc) {
 		glGenVertexArrays(1, &_gameEntities[nEntity].getVertexArray());
 		//binds the vertex array object
 		glBindVertexArray(_gameEntities[nEntity].getVertexArray());
-
+		
 		// Create a Vertex Buffer Object and copy the vertex data to it
 		glGenBuffers(1, &_gameEntities[nEntity].getVertexBuffer());
 		//Specifies the target to which the buffer object is bound
 		glBindBuffer(GL_ARRAY_BUFFER, _gameEntities[nEntity].getVertexBuffer());
-
+		
 		// Create an element array
 		glGenBuffers(1, &_gameEntities[nEntity].getElementBuffer());
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _gameEntities[nEntity].getElementBuffer());
@@ -192,10 +192,10 @@ void Renderer::newSrpiteSheet(const char* image) {
 		glBindTexture(GL_TEXTURE_2D, texture);
 	}
 }
-void Renderer::cutSrpiteSheet() {
+void Renderer::cutSrpiteSheet(int entity) {
 
-	float* pointer = entityGame.updateSprite();
-	const int *size = entityGame.squareSize();
+	float* pointer = _gameEntities[entity].updateSprite();
+	const int *size = _gameEntities[entity].squareSize();
 	float a[36];
 	for (int i = 0; i < 6; i++)
 	{
@@ -205,8 +205,8 @@ void Renderer::cutSrpiteSheet() {
 	glBufferData(GL_ARRAY_BUFFER, sizeof(a), a, GL_STATIC_DRAW);
 }
 
-void Renderer::spriteParamts(float u, float v, float width, float high, float cant, float space, float time) {
-	entityGame.spriteParameters(u, v, width, high, cant, space, time, totalWidth, totalHeight);
+void Renderer::spriteParamts(float u, float v, float width, float high, float cant, float space, float time, int entity) {
+	_gameEntities[entity].spriteParameters(u, v, width, high, cant, space, time, totalWidth, totalHeight);
 }
 
 

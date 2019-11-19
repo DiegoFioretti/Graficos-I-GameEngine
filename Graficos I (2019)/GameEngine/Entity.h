@@ -81,5 +81,11 @@ public:
 	int *squareSize();
 	void spriteParameters(float u, float v, float width, float high, float cant, float space, float time, float totalWidth, float totalHeight);
 	float txtVrtx[4][4];
+	
+	float topLx;
+	float topLy;
+	float bttmRx;
+	float bttmRy;
+	
 };
 #endif
