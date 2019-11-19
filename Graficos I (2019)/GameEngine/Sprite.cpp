@@ -13,7 +13,7 @@ Sprite::~Sprite()
 }
 
 void Sprite::spriteParameters(float u, float v, float width, float high, float cant, float space, float time, float totalWidth, float totalHeight) {
-{
+
 	int spaceSprites = 0;
 	for (int i = 0; i < cant; i++)
 	{

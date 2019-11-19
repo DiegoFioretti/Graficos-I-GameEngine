@@ -40,7 +40,7 @@ void Entity::Initialize(string& textloc)
 
 	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(shaper.getSquareElements()), &shaper.getSquareElements(), GL_STATIC_DRAW);
 
-	spriter.setTextureLocation(textloc);
+	//spriter.setTextureLocation(textloc);
 }
 
 array<GLfloat, SIZESQV> Entity::getVertices()

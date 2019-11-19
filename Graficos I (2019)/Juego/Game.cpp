@@ -4,6 +4,10 @@
 Game::Game()
 {
 	done = false;
+
+	addNewQuad("../Juego/pkm.png");
+
+	addNewQuad("../Juego/pkm.png");
 }
 
 Game::~Game()
@@ -18,7 +22,6 @@ void Game::update()
 	//keyPress(letra,0 constante y 1 una vez)
 	if (keyPress('q',1))
 	{
-		addNewQuad("../Juego/pkm.png");
 	}
 	if (keyPress('w', 1))
 	{
@@ -30,16 +33,19 @@ void Game::update()
 	{
 		coutSprite("../Juego/pkm.png", 14, 76, 34, 52, 4, 30, 1);
 		test();
+		entityPos(true, 'x', 0, -0.1f);
 	}
 	if (keyPress('s', 1))
 	{
 		coutSprite("../Juego/pkm.png", 14, 10, 34, 52, 4, 30, 1);
 		test();
+		entityPos(true, 'y', 0, -0.1f);
 	}
 	if (keyPress('d', 1))
 	{
 		coutSprite("../Juego/pkm.png", 14, 138, 34, 52, 4, 30, 1);
 		test();
+		entityPos(true, 'x', 0, 0.1f);
 	}
 	
 	/*if (keyPressOnce('e'))

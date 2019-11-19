@@ -156,8 +156,11 @@ void Renderer::addEntity(string& textloc) {
 		// load and generate the texture
 		int width, height, nrChannels;
 		stbi_set_flip_vertically_on_load(true);
-
-		
+		*/
+		glUseProgram(0);
+		glBindVertexArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 		nEntity++;
 	}
@@ -187,14 +190,6 @@ void Renderer::newSrpiteSheet(const char* image) {
 		stbi_image_free(data);
 
 		glBindTexture(GL_TEXTURE_2D, texture);
-		glBindTexture(GL_TEXTURE_2D, texture);*/
-
-		glUseProgram(0);
-		glBindVertexArray(0);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-		nEntity++;
 	}
 }
 void Renderer::cutSrpiteSheet() {
@@ -202,7 +197,7 @@ void Renderer::cutSrpiteSheet() {
 	float* pointer = entityGame.updateSprite();
 	const int *size = entityGame.squareSize();
 	float a[36];
-	for (int i = 0; i < *size; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		a[i] = *pointer;
 		pointer++;
@@ -211,7 +206,7 @@ void Renderer::cutSrpiteSheet() {
 }
 
 void Renderer::spriteParamts(float u, float v, float width, float high, float cant, float space, float time) {
-	entityGame.spriteParameters( u, v, width, high, cant, space, time, totalWidth, totalHeight);
+	entityGame.spriteParameters(u, v, width, high, cant, space, time, totalWidth, totalHeight);
 }
 
 
