@@ -145,7 +145,7 @@ void Renderer::addEntity(string& textloc) {
 		_gameEntities[nEntity].getUniTrans() = glGetUniformLocation(_gameEntities[nEntity].getShaderProgram(), "trans");
 
 		//-------------------------------------------TEXTURES-------------------------------------------------------
-		/*unsigned int texture;
+		unsigned int texture;
 		glGenTextures(1, &texture);
 		glBindTexture(GL_TEXTURE_2D, texture);
 		// set the texture wrapping/filtering options (on the currently bound texture object)
@@ -156,11 +156,11 @@ void Renderer::addEntity(string& textloc) {
 		// load and generate the texture
 		int width, height, nrChannels;
 		stbi_set_flip_vertically_on_load(true);
-		*/
+		/*
 		glUseProgram(0);
 		glBindVertexArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);*/
 
 		nEntity++;
 	}
@@ -222,10 +222,9 @@ void Renderer::WindowRefresh(GLFWwindow* window)
 	glClearColor(135.f/255.f, 135.f / 255.f, 135.f / 255.f, 1);
 	//Limpia el buffer con el color creado
 	glClear(GL_COLOR_BUFFER_BIT);
-	
-	glBindVertexArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+
+
 
 	glm::mat4 trans = glm::mat4(1.0f);
 
@@ -233,12 +232,14 @@ void Renderer::WindowRefresh(GLFWwindow* window)
 	{
 		for (size_t i = 0; i < nEntity; i++)
 		{		
+			glUseProgram(_gameEntities[0].getShaderProgram());
 			//binds the vertex array object
-			glBindVertexArray(_gameEntities[i].getVertexArray());
+			glBindVertexArray(_gameEntities[0].getVertexArray());
 			//Specifies the target to which the buffer object is bound
-			glBindBuffer(GL_ARRAY_BUFFER, _gameEntities[i].getVertexBuffer());
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _gameEntities[i].getElementBuffer());
-			glUseProgram(_gameEntities[i].getShaderProgram());
+			
+			
+			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
 			//posicion
 			trans = glm::translate(trans, glm::vec3(_gameEntities[i].GetPositionX(), _gameEntities[i].GetPositionY(), _gameEntities[i].GetPositionZ()));
 			//rotacion
@@ -251,12 +252,12 @@ void Renderer::WindowRefresh(GLFWwindow* window)
 			glm::vec4 result = trans * glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
 			glUniformMatrix4fv(_gameEntities[i].getUniTrans(), 1, GL_FALSE, glm::value_ptr(trans));
 			//Reneriza las primitivas(Que primitivas renderizar, especifica el indice inicial, el numero de indices para ser renderizados )
-			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+			/*
 			trans = glm::mat4(1.0f);
 			glUseProgram(0);
 			glBindVertexArray(0);
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);*/
 		}
 	}
 	
