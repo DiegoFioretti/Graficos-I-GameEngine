@@ -40,7 +40,7 @@ public:
 	Entity();
 	~Entity();
 
-	void Initialize(string& textloc);
+	void Initialize(float x,float y);
 
 	array<GLfloat, SIZESQV> getVertices();
 	array<GLuint, SIZESQE> getElements();

@@ -20,8 +20,10 @@ Entity::~Entity()
 
 }
 
-void Entity::Initialize(string& textloc) 
+void Entity::Initialize(float x , float y) 
 {
+	_positionX += x;
+	_positionY += y;
 	// Create Vertex Array Object
 	//glGenVertexArrays(1, &_vertexArrayO);
 	//binds the vertex array object
@@ -75,7 +77,9 @@ GLint& Entity::getTexAttrib() { return _texAttrib; }
 GLint& Entity::getUniTrans() { return _uniTrans; }
 glm::mat4& Entity::getTrans() { return _trans; }
 
-void Entity::SetPositionX(float& x) { _positionX += x; }
+void Entity::SetPositionX(float& x) { 
+	_positionX += x;
+}
 float Entity::GetPositionX() { return _positionX; }
 void Entity::SetPositionY(float& y) { _positionY += y; }
 float Entity::GetPositionY() { return _positionY; }

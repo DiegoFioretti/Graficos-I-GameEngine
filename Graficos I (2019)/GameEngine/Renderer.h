@@ -33,7 +33,7 @@ public:
 	int totalWidth, totalHeight, nrChannels;
 	Renderer();
 	~Renderer();
-	void addEntity(string& textloc);
+	void addEntity(float x, float y);
 	array<Entity, MAXENTITIES> getGameEntities();
 	void WindowRefresh(GLFWwindow* window);
 

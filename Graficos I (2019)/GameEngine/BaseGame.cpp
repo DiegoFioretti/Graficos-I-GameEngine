@@ -28,22 +28,48 @@ int BaseGame::ScreenInit() {
 }
 
 
-void BaseGame::addNewQuad(string textureLocation)
+void BaseGame::addNewQuad(float x, float y)
 {
-	gameRender.addEntity(textureLocation);
+	gameRender.addEntity(x,y);
 }
 
 bool BaseGame::keyPress(char key, int num) {
 	return gameInput.keyCall(gameWindow.window(), key, num);
 }
 
-bool BaseGame::checkCollision(int entA, int entB) {
-	return gameCollider.checkcollision(gameRender.getGameEntities()[entA], gameRender.getGameEntities()[entB]);
+bool BaseGame::checkCollision(int entA, int entB,int cualCol) {
+	switch (cualCol)
+	{
+	case 0:
+		return gameCollider.checkcollision(gameRender.getGameEntities()[entA], gameRender.getGameEntities()[entB]);
+		break;
+
+	default:
+		return 0;
+		break;
+	}
+
+	
+}
+void BaseGame::hitCol() {
+	entityPos(true, eje, entidad, cant);
 }
 
 float BaseGame::entityPos(bool willChange, char axis, int entity, float amount)
 {
-	return gameRender.entityPosMod(willChange, axis, entity, amount);
+
+	eje = axis;
+	entidad = entity;
+	cant = amount;
+	gameRender.entityPosMod(willChange, axis, entity, amount);
+
+	if (checkCollision(0, 1, 0)){
+		float num = amount * -2.0f;
+		gameRender.entityPosMod(willChange, axis, entity, num);
+		return 0.0f;
+	}
+	///
+	return 0.0f;
 }
 float BaseGame::entityScale(bool willChange, char axis, int entity, float amount)
 {

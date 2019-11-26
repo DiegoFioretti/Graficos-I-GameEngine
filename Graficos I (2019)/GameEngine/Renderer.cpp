@@ -84,13 +84,13 @@ Renderer::~Renderer()
 
 }
 
-void Renderer::addEntity(string& textloc) {
+void Renderer::addEntity(float x, float y) {
 	if (nEntity < MAXENTITIES)
 	{
 		Entity simple;
 		_gameEntities[nEntity] = simple;
 
-		_gameEntities[nEntity].Initialize(textloc);
+		_gameEntities[nEntity].Initialize(x,y);
 
 		// Create Vertex Array Object
 		glGenVertexArrays(1, &_gameEntities[nEntity].getVertexArray());

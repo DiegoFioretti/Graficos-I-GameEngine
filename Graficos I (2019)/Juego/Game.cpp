@@ -4,12 +4,14 @@
 Game::Game()
 {
 	done = false;
-	addNewQuad("../Juego/pkm.png");
+	addNewQuad(0,0);
 
 	coutSprite("../Juego/pkm.png", 14, 76, 34, 52, 4, 30, 1,0);
-	addNewQuad("../Juego/pkm.png");
+
+	addNewQuad(0.5f, 0.5f);
 
 	coutSprite("../Juego/pkm.png", 14, 76, 34, 52, 4, 30, 1, 1);
+	
 }
 
 Game::~Game()
@@ -19,14 +21,11 @@ Game::~Game()
 void Game::update() 
 {
 
-	if (checkCollision(0, 1))
+	if (checkCollision(0, 1, 0))
 	{
-		printf("Colisionando");
+		hitCol();
 	}
-	coutSprite("../Juego/pkm.png", 14, 76, 34, 52, 4, 30, 1, 0);
-	test(0);
-	coutSprite("../Juego/pkm.png", 14, 76, 34, 52, 4, 30, 1, 1);
-	test(1);
+	
 	//keyPress(letra,0 constante y 1 una vez)
 	if (keyPress('q',1))
 	{
@@ -35,25 +34,25 @@ void Game::update()
 	{
 		coutSprite("../Juego/pkm.png", 14, 200, 34, 52, 4, 30, 1,0);
 		test(0);
-		entityPos(true, 'y', 0, 0.1f);
+		entityPos(true, 'y', 0, 0.03f);
 	}
 	if (keyPress('a', 1))
 	{
 		coutSprite("../Juego/pkm.png", 14, 76, 34, 52, 4, 30, 1,0);
 		test(0);
-		entityPos(true, 'x', 0, -0.1f);
+		entityPos(true, 'x', 0, -0.03f);
 	}
 	if (keyPress('s', 1))
 	{
 		coutSprite("../Juego/pkm.png", 14, 10, 34, 52, 4, 30, 1,0);
 		test(0);
-		entityPos(true, 'y', 0, -0.1f);
+		entityPos(true, 'y', 0, -0.03f);
 	}
 	if (keyPress('d', 1))
 	{
 		coutSprite("../Juego/pkm.png", 14, 138, 34, 52, 4, 30, 1,0);
 		test(0);
-		entityPos(true, 'x', 0, 0.1f);
+		entityPos(true, 'x', 0, 0.03f);
 	}
 
 	if (keyPress('i', 1))
@@ -68,7 +67,10 @@ void Game::update()
 		entityPos(true, 'y', 1, 0.1f);
 	}
 
-	
+	coutSprite("../Juego/pkm.png", 14, 76, 34, 52, 4, 30, 1, 0);
+	test(0);
+	coutSprite("../Juego/pkm.png", 14, 76, 34, 52, 4, 30, 1, 1);
+	test(1);
 	/*if (keyPressOnce('e'))
 	{
 		entityPos(true, 'z', 0, 0.001f);

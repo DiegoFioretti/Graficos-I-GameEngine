@@ -7,6 +7,8 @@ class BASEGAMELIB Game : public BaseGame
 private:
 	bool doop = true;
 	bool done;
+	float num = 0.0f;
+	char eje;
 public:
 	Game();
 	~Game();
